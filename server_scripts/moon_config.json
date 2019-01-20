@@ -1,0 +1,14 @@
+{
+  "redis": {
+    "socket": "/tmp/redis.sock"
+  },
+  "power": {
+    "shunt_ohms": 0.0075,
+    "max_expected_amps": 10,
+    "redis_window": 30,
+    "polling_freq": 10
+  },
+  "gps": {
+    "polling_freq": 2
+  }
+}

@@ -1,0 +1,12 @@
+# /lib/systemd/system/mongodb.service
+
+[Unit]
+Description=Mongo DB
+Documentation=man:mongod(1)
+
+[Service]
+User=mongodb
+ExecStart=/usr/bin/mongod --config /etc/mongodb.conf
+
+[Install]
+WantedBy=multi-user.target
