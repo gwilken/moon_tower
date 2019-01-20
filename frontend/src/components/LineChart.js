@@ -41,7 +41,7 @@ class ReduxLineChart extends React.Component {
 
   chart = (scores, timestamps) => {
     let ratio = .2
-    let width = typeof this.state.windowWidth != 'undefined' ? this.state.windowWidth : window.innerWidth
+    let width = typeof this.state.windowWidth !== 'undefined' ? this.state.windowWidth : window.innerWidth
     let height = width * ratio
 
     let minScore = Math.min(...scores)
@@ -103,7 +103,7 @@ class ReduxLineChart extends React.Component {
                 fill={ diffScore >= 0 ? 'rgba(0,235,0,1)' : 'rgba(235,0,0,1)' } 
                 fontSize={length > 30 ? "12px" : "15px"}>
 
-                { diffScore > 0 ? "+" : null}{ diffScore != 0 ? diffScore : "0" }
+                { diffScore > 0 ? "+" : null}{ diffScore !== 0 ? diffScore : "0" }
               </text>
             </g>
           : 
@@ -126,7 +126,7 @@ class ReduxLineChart extends React.Component {
                 fill={ diffScore >= 0 ? 'rgba(0,235,0,1)' : 'rgba(235,0,0,1)' } 
                 fontSize={length > 30 ? "12px" : "15px"}>
 
-                { diffScore > 0 ? "+" : null}{ diffScore != 0 ? diffScore : null }
+                { diffScore > 0 ? "+" : null}{ diffScore !== 0 ? diffScore : null }
               </text>
             </g>
           )

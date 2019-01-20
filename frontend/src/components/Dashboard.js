@@ -1,7 +1,4 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import { addInitialData } from '../js/actions.js'
-import store from '../js/store'
+import React from 'react'
 
 const style = {
     display: 'grid',
@@ -10,27 +7,12 @@ const style = {
     height: '100vh'
 }
 
-class Dashboard extends Component {
-    constructor() {
-        super()
-    }
-
-    componentWillMount() {
-        axios.get(`/allkeys`)
-            .then(res => this.receivedData(res.data))
-    }
-
-    receivedData = (data) => {
-        store.dispatch( addInitialData(data, 'solarData') )
-    }
-
-    render() {
-        return (
-            <div style={ style }>
-                { this.props.children }
-            </div>
-        )
-    }
+const Dashboard = (props) => {
+    return (
+        <div style={ style }>
+            { props.children }
+        </div>
+    )
 }
 
 export default Dashboard

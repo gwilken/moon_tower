@@ -6,7 +6,7 @@ import store from '../js/store'
 import axios from 'axios'
 
 const mapStateToProps = state => {
-    return { data: state.power }
+    return { data: state.solar }
 }
 
 class ReduxSolar extends Component {
@@ -20,12 +20,13 @@ class ReduxSolar extends Component {
     }
 
     componentWillMount() {
-        axios.get(`/key/power/`)
+        axios.get(`/api/key/solar-set/`)
             .then(res => this.receivedInitialData(res.data))
     }
 
     receivedInitialData = (data) => {
-        store.dispatch( addInitialData(data, 'power') )
+        console.log('solar data:', data)
+        store.dispatch( addInitialData(data, 'solar') )
     }
     
     render () {
@@ -35,8 +36,8 @@ class ReduxSolar extends Component {
             value={ this.state.currentValue }
             unit={ this.state.unit }
             color="yellow"
-            scores={ this.props.data.map(elem => elem.current) } 
-            timestamps= { this.props.data.map(elem => elem.timestamp) } />
+            scores={ this.props.data.map(elem => parseInt(elem.current).toFixed(0 )) } 
+            timestamps= { this.props.data.map(elem => parseInt(elem.timestamp).toFixed(0) ) } />
       )
   }
 }

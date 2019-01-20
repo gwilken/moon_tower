@@ -6,10 +6,10 @@ import store from '../js/store'
 import axios from 'axios'
 
 const mapStateToProps = state => {
-    return { data: state.power }
+    return { data: state.house }
 }
 
-class ReduxSolar extends Component {
+class ReduxHouse extends Component {
     constructor(props) {
         super()
 
@@ -20,12 +20,13 @@ class ReduxSolar extends Component {
     }
 
     componentWillMount() {
-        axios.get(`/key/power/`)
+        axios.get(`/api/key/house-set/`)
             .then(res => this.receivedInitialData(res.data))
     }
 
     receivedInitialData = (data) => {
-        store.dispatch( addInitialData(data, 'power') )
+        console.log('house data:', data)
+        store.dispatch( addInitialData(data, 'house') )
     }
     
     render () {
@@ -35,12 +36,12 @@ class ReduxSolar extends Component {
             value={ this.state.currentValue }
             unit={ this.state.unit }
             color="magenta"
-            scores={ this.props.data.map(elem => elem.current) } 
-            timestamps= { this.props.data.map(elem => elem.timestamp) } />
+            scores={ this.props.data.map(elem => parseInt(elem.current).toFixed(0) ) } 
+            timestamps= { this.props.data.map(elem => parseInt(elem.timestamp).toFixed(0) ) } />
       )
   }
 }
 
-const Solar = connect(mapStateToProps)(ReduxSolar)
+const House = connect(mapStateToProps)(ReduxHouse)
 
-export default Solar
+export default House

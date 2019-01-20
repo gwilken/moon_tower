@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Bar from './BarChart'
 import Line from './LineChart'
 import Header from './Header'

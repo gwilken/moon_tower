@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 
 const Header = (props) => {
-    let style = {
-        color: 'silver'
-    }
-
     return (
         <div className="panel-header">
             <div className="panel-title">

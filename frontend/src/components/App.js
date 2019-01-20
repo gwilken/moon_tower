@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Dashboard from './Dashboard'
 import Solar from './Solar'
-import Energy from './Energy'
-import Fridge from './Fridge'
+import House from './House'
+// import Fridge from './Fridge'
 
 require  ('../js/websocket')
 require('../js/ui/resizeListener')
@@ -12,9 +12,9 @@ const App = () => {
     <div>
       <Dashboard>
         <Solar />
-        <Energy />
-        <Fridge />
-÷      </Dashboard>
+        <House />
+        {/* <Fridge /> */}
+      </Dashboard>
     </div>
   );
 }

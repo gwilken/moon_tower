@@ -43,7 +43,7 @@ class ReduxBarChart extends Component {
   }
  
   buildChart = (scores, timestamps) => {
-    let ratio = .75
+    // let ratio = .75
     let screenWidth = typeof this.state.windowWidth != 'undefined' ? this.state.windowWidth : window.innerWidth
     let screenHeight = typeof this.state.windowHeight != 'undefined' ? this.state.windowHeight : window.innerHeight
     let width = screenWidth / 2

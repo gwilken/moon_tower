@@ -2,7 +2,7 @@ import {WINDOW_RESIZE, PUSH_DATA, ADD_INITIAL_DATA, PUSH_AND_SHIFT_DATA } from '
 
 const initialState = {
     windowWidth:  window.innerWidth,
-    power: [],
+    house: [],
     solar: [],
     fridge: [],
     gps: []
