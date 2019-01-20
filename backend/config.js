@@ -1,6 +1,6 @@
 const config = {
   webserver: {
-    port: 8080
+    port: 4000
   },
   db: {
     name: '',
