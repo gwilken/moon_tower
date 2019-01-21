@@ -3,7 +3,6 @@ const config = require('./config.js')
 const redis = require('redis')
 const subscriber = redis.createClient(config.redis.port, config.redis.host)
 const getter = redis.createClient(config.redis.port, config.redis.host)
-
 const { promisify } = require('util')
 const zrevrange = promisify(getter.zrevrange).bind(getter)
 const hgetall = promisify(getter.hgetall).bind(getter)
@@ -26,12 +25,10 @@ subscriber.on('ready', () => {
             client.send(JSON.stringify(hash));
         }
     });
-
   })
 });
 
-const wss = new WebSocket.Server({ port: 8081 });
-
+const wss = new WebSocket.Server({ port: 8080 });
 
 wss.on('connection', function connection(ws) {
     console.log('client websocket connected')
@@ -39,7 +36,6 @@ wss.on('connection', function connection(ws) {
     ws.on('message', function incoming(packet) {
         console.log(packet)
     })
-
 })
 
 module.exports = wss
