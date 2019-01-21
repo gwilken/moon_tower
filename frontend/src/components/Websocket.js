@@ -1,4 +1,4 @@
-import { pushAndShiftData } from '../js/actions.js'
+import { pushData } from '../js/actions.js'
 import store from '../js/store'
 
 //raspi pi ip
@@ -11,13 +11,9 @@ ws.onmessage = (event) => {
     try {
         let data = JSON.parse(event.data)
 
-        // if (data.parent) {
-        //     switch(data.parent) {
-        //         case 'gps':
-        //             //store.dispatch(pushAndShiftData)
-        //     }
-
-        // }
+        if (data.parent) {
+            store.dispatch( pushData(event.data, data.parent) )
+        }
 
         console.log(data)
 
