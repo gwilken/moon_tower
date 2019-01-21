@@ -18,7 +18,7 @@ def add_record(set, values):
 
     timestamp = int(time.time())
     values['timestamp'] = timestamp
-    values['parent'] = set + '-set'
+    values['parent'] = set
     hashkey = set + '-hash-' + str(timestamp)
 
     print hashkey
