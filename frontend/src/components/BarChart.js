@@ -102,6 +102,8 @@ class ReduxBarChart extends Component {
         )}
     )
 
+    let displayTime = moment(timestamps[0] * 1000).fromNow()
+
     let title = 
       <g>
         <text 
@@ -111,7 +113,7 @@ class ReduxBarChart extends Component {
           alignmentBaseline="middle"
           fill="silver" 
           fontSize="12">
-          Last 3 Hours
+          { displayTime }
         </text>
       </g>
 

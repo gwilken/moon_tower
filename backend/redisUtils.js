@@ -1,7 +1,8 @@
 const redisClient = require('./redis.js')
 const { promisify } = require('util')
 const asyncIncr = promisify(redisClient.incr).bind(redisClient)
-const asyncZrange = promisify(redisClient.zrange).bind(redisClient)
+const zrange = promisify(redisClient.zrange).bind(redisClient)
+const zrevrange = promisify(redisClient.zrevrange).bind(redisClient)
 const asyncHget = promisify(redisClient.hget).bind(redisClient)
 const asyncHgetall = promisify(redisClient.hgetall).bind(redisClient)
 // const redisGet = promisify(redisClient.get).bind(redis)
@@ -17,11 +18,27 @@ const recordEvent = async (event) => {
     redisClient.zadd(event.type, timestamp, event.id)
 }
 
+const getZrevrange = (key, window) => {
+    return new Promise( async (resolve, reject) => {
+        let list = await zrevrange(key, 0, window)
+
+      //  console.log(key, list)
+
+        let res = list.map(async (zkey) => {
+            return await asyncHgetall(zkey)
+        })
+
+        Promise.all(res).then( (docs) => {
+            resolve(docs)
+        })
+    })
+}
+
 const getFullEvent = (type, min = -30, max = -1) => {
     return new Promise( async (resolve, reject) => {
-        let list = await asyncZrange(type, min, max)
+        let list = await zrange(type, min, max)
 
-        console.log(type, list)
+       // console.log(type, list)
 
         let res = list.map(async (key) => {
             return await asyncHgetall(key)
@@ -35,7 +52,7 @@ const getFullEvent = (type, min = -30, max = -1) => {
 
 const getEventField = (type, field, min = 0, max = 100) => {
     return new Promise (async (resolve, reject) => {
-        let list = await asyncZrange(type, min, max)
+        let list = await zrange(type, min, max)
 
         let res = list.map(async key =>  await asyncHget(key, field))
 
@@ -46,7 +63,7 @@ const getEventField = (type, field, min = 0, max = 100) => {
 
 const getEventFieldAndTimestamp = (type, field, min = 0, max = 100) => {
     return new Promise (async (resolve, reject) => {
-        let list = await asyncZrange(type, min, max)
+        let list = await zrange(type, min, max)
 
         let res = list.map(async (key) => {
             let value = await asyncHget(key, field)
@@ -58,4 +75,4 @@ const getEventFieldAndTimestamp = (type, field, min = 0, max = 100) => {
     })
 }
 
-module.exports = { redisClient, recordEvent, getFullEvent, getEventField, getEventFieldAndTimestamp }
+module.exports = { redisClient, getZrevrange, recordEvent, getFullEvent, getEventField, getEventFieldAndTimestamp }
