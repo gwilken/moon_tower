@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
-
-import Panel from './Panel'
 import Header from './Header'
 
 import { connect } from 'react-redux'
@@ -44,6 +42,7 @@ class ReduxGPS extends Component {
             <div className="panel">
                 <Header title="GPS" color="cyan" />
                 <Map
+                    // eslint-disable-next-line 
                     style="mapbox://styles/gwilken/cjr5ki34136js2rt88hwjq6km"
                     zoom={ [14] }
                     center= { this.props.lastGps ? [parseFloat(this.props.lastGps.longitude), parseFloat(this.props.lastGps.latitude)] : [-118.2602235, 34.101106833] }

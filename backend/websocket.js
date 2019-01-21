@@ -20,8 +20,6 @@ subscriber.on('ready', () => {
     let hashKey = await zrevrange(key, 0, 0)
     let hash = await hgetall(hashKey)
 
-    console.log(hash)
-
     wss.clients.forEach(client => {
         if (client.readyState === WebSocket.OPEN) {
             console.log('sending to clients:', hash)
