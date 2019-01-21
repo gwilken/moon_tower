@@ -53,9 +53,19 @@ a {
 
 .panel-title {
   display: flex;
+  position: relative;
+  width: 100%;
   align-items: baseline;
   color: silver;
   font-size: 1.2rem;
+  justify-content: space-between;
+}
+
+.view-button {
+  position: absolute;
+  right: -4px;
+  top: -18px;
+  font-size: 2.5rem;
 }
 
 .panel-rt-container {

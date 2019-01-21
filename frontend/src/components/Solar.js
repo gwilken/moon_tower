@@ -1,47 +1,97 @@
 import React, { Component } from 'react'
-import Panel from './Panel'
-import { connect } from 'react-redux'
-import { addInitialData } from '../js/actions.js'
-import store from '../js/store'
-import axios from 'axios'
+import Header from './Header'
+import Bar from './BarChart'
 
-const mapStateToProps = state => {
-    return { data: state.solar }
-}
 
-class ReduxSolar extends Component {
-    constructor(props) {
-        super()
+class Solar extends Component {
+  constructor(props) {
+      super()
 
-        this.state = {
-            currentValue: 2280,
-            unit: 'mA'
-        }
+      this.state = {
+        value: 240,
+        unit: 'mA'
+      }
+  }
+  
+  returnCurrentView = () => {
+    switch (this.props.currentView) {
+      case 0:
+        return (
+          <div className="panel">
+              <Header
+                title="Solar" 
+                color={ this.props.color } 
+                value={ this.state.value } 
+                unit="mA" 
+                onClick={ this.props.onClick }
+                />
+                
+                <Bar 
+                  scores={ this.props.data.map(elem => parseInt(elem.current).toFixed(0 )) } 
+                  timestamps={  this.props.data.map(elem => parseInt(elem.timestamp) ) } 
+                  color={ this.props.color } />
+          </div>
+        )
+      
+        case 1:
+          return (
+            <div className="panel">
+                <Header
+                  title="Solar" 
+                  color={ this.props.color } 
+                  value={ this.state.value } 
+                  unit="V" 
+                  onClick={ this.props.onClick }
+                  />
+                  
+                  <Bar 
+                    scores={ this.props.data.map(elem => parseFloat(elem.voltage) * 10 ) } 
+                    timestamps={  this.props.data.map(elem => parseInt(elem.timestamp) ) } 
+                    color={ this.props.color } />
+            </div>
+          )
+
+        case 2:
+          return (
+            <div className="panel">
+              <Header
+                title="Solar" 
+                color={ this.props.color } 
+                value={ this.state.value } 
+                unit="V" 
+                onClick={ this.props.onClick }
+                />
+            </div>
+          )
+          
+        case 3:
+          return (
+            <div className="panel">
+              <Header
+                title="Solar" 
+                color={ this.props.color } 
+                value="Settings"
+                unit="" 
+                onClick={ this.props.onClick }
+                />
+            </div>
+          )
+
+        default:
+          return (<div></div>)
     }
+  }
 
-    componentWillMount() {
-        axios.get(`/api/key/solar-set/`)
-            .then(res => this.receivedInitialData(res.data))
-    }
+  render () {
+      let currentView = this.returnCurrentView()
+      console.log( this.props.data )
 
-    receivedInitialData = (data) => {
-        console.log('solar data:', data)
-        store.dispatch( addInitialData(data, 'solar') )
-    }
-    
-    render () {
       return (
-        <Panel 
-            title="Solar"
-            value={ this.state.currentValue }
-            unit={ this.state.unit }
-            color="yellow"
-            scores={ this.props.data.map(elem => parseInt(elem.current).toFixed(0 )) } 
-            timestamps= { this.props.data.map(elem => parseInt(elem.timestamp).toFixed(0) ) } />
+        <div>
+          { currentView }
+        </div>
       )
   }
 }
-
-const Solar = connect(mapStateToProps)(ReduxSolar)
 
 export default Solar

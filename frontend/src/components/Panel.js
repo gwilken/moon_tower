@@ -4,7 +4,6 @@ import Line from './LineChart'
 import Header from './Header'
 
 const Panel = (props) => {
-  console.log(props)
   return (
     <div className="panel">
       <Header title={ props.title } color={ props.color } value={ props.value } unit={ props.unit } />

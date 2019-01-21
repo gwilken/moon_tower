@@ -1,47 +1,97 @@
 import React, { Component } from 'react'
-import Panel from './Panel'
-import { connect } from 'react-redux'
-import { addInitialData } from '../js/actions.js'
-import store from '../js/store'
-import axios from 'axios'
+import Header from './Header'
+import Bar from './BarChart'
 
-const mapStateToProps = state => {
-    return { data: state.house }
-}
 
-class ReduxHouse extends Component {
-    constructor(props) {
-        super()
+class House extends Component {
+  constructor(props) {
+      super()
 
-        this.state = {
-            currentValue: 1280,
-            unit: 'mA'
-        }
+      this.state = {
+        value: 240,
+        unit: 'mA'
+      }
+  }
+  
+  returnCurrentView = () => {
+    switch (this.props.currentView) {
+      case 0:
+        return (
+          <div className="panel">
+              <Header
+                title="House" 
+                color={ this.props.color } 
+                value={ this.state.value } 
+                unit="mA" 
+                onClick={ this.props.onClick }
+                />
+                
+                <Bar 
+                  scores={ this.props.data.map(elem => parseInt(elem.current).toFixed(0 )) } 
+                  timestamps={  this.props.data.map(elem => parseInt(elem.timestamp) ) } 
+                  color={ this.props.color } />
+          </div>
+        )
+      
+        case 1:
+          return (
+            <div className="panel">
+                <Header
+                  title="House" 
+                  color={ this.props.color } 
+                  value={ this.state.value } 
+                  unit="V" 
+                  onClick={ this.props.onClick }
+                  />
+                  
+                  <Bar 
+                    scores={ this.props.data.map(elem => parseFloat(elem.voltage) * 10 ) } 
+                    timestamps={  this.props.data.map(elem => parseInt(elem.timestamp) ) } 
+                    color={ this.props.color } />
+            </div>
+          )
+
+        case 2:
+          return (
+            <div className="panel">
+              <Header
+                title="House" 
+                color={ this.props.color } 
+                value={ this.state.value } 
+                unit="V" 
+                onClick={ this.props.onClick }
+                />
+            </div>
+          )
+          
+        case 3:
+          return (
+            <div className="panel">
+              <Header
+                title="House" 
+                color={ this.props.color } 
+                value="Settings"
+                unit="" 
+                onClick={ this.props.onClick }
+                />
+            </div>
+          )
+
+        default:
+          return (<div></div>)
     }
+  }
 
-    componentWillMount() {
-        axios.get(`/api/key/house-set/`)
-            .then(res => this.receivedInitialData(res.data))
-    }
+  render () {
+      let currentView = this.returnCurrentView()
+      console.log( this.props.data )
 
-    receivedInitialData = (data) => {
-        console.log('house data:', data)
-        store.dispatch( addInitialData(data, 'house') )
-    }
-    
-    render () {
       return (
-        <Panel 
-            title="Power"
-            value={ this.state.currentValue }
-            unit={ this.state.unit }
-            color="magenta"
-            scores={ this.props.data.map(elem => parseInt(elem.current).toFixed(0) ) } 
-            timestamps= { this.props.data.map(elem => parseInt(elem.timestamp).toFixed(0) ) } />
+        <div>
+          { currentView }
+        </div>
       )
   }
 }
-
-const House = connect(mapStateToProps)(ReduxHouse)
 
 export default House

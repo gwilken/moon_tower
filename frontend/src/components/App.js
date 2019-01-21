@@ -1,8 +1,8 @@
 import React from 'react'
 import Dashboard from './Dashboard'
-import Solar from './Solar'
-import House from './House'
-import GPS from './GPS'
+import SolarContainer from './SolarContainer'
+import HouseContainer from './HouseContainer'
+import GPSContainer from './GPSContainer'
 // import Fridge from './Fridge'
 
 require('../js/ui/resizeListener')
@@ -12,9 +12,9 @@ const App = () => {
   return (
     <div>
       <Dashboard>
-        <Solar />
-        <House />
-        <GPS />
+        <SolarContainer />
+        <HouseContainer />
+        <GPSContainer />
         {/* <Fridge /> */}
       </Dashboard>
     </div>
