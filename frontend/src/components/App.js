@@ -2,6 +2,7 @@ import React from 'react'
 import Dashboard from './Dashboard'
 import Solar from './Solar'
 import House from './House'
+import GPS from './GPS'
 // import Fridge from './Fridge'
 
 require  ('../js/websocket')
@@ -13,6 +14,7 @@ const App = () => {
       <Dashboard>
         <Solar />
         <House />
+        <GPS />
         {/* <Fridge /> */}
       </Dashboard>
     </div>

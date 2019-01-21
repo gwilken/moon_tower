@@ -47,7 +47,7 @@ class ReduxBarChart extends Component {
     let screenWidth = typeof this.state.windowWidth != 'undefined' ? this.state.windowWidth : window.innerWidth
     let screenHeight = typeof this.state.windowHeight != 'undefined' ? this.state.windowHeight : window.innerHeight
     let width = screenWidth / 2
-    let height = (screenHeight / 2) - 30
+    let height = (screenHeight / 2) - 60
     let maxValue = Math.max(...scores)
     let minValue = Math.min(...scores)
 
@@ -110,7 +110,7 @@ class ReduxBarChart extends Component {
           textAnchor="middle"
           alignmentBaseline="middle"
           fill="silver" 
-          fontSize="16">
+          fontSize="12">
           Last 3 Hours
         </text>
       </g>

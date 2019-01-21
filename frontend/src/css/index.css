@@ -45,6 +45,7 @@ a {
 
 .panel-header {
   display: flex;
+  flex-direction: column;
   align-items: baseline;
   justify-content: space-between;
   width: 100%;
@@ -64,10 +65,14 @@ a {
 
 .panel-rt {
   color: white;
-  font-size: 2rem;
+  font-size: 2.4rem;
 }
 
 .panel-rt-label {
   color: silver;
   font-size: 1.5rem;
+}
+
+.mapboxgl-map {
+  margin-top: 10px;
 }
