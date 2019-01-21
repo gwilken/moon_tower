@@ -17,13 +17,14 @@ constructor(props) {
 
     this.state = {
         currentView: 0,
+        window: 30,
         color: 'magenta',
         mostRecentData: null
     }
 }
 
 componentWillMount() {
-    axios.get(`/api/key/house-set/`)
+    axios.get(`/api/window/house-set/${this.state.window}`)
         .then(res => this.receivedInitialData(res.data))
 }
 
@@ -39,6 +40,12 @@ handleClick = () => {
   })
 }
 
+handleChangeWindow = (val) => {
+  this.setState({
+    window: val
+  })
+}
+
 render () {
     return ( 
       <House
@@ -46,6 +53,7 @@ render () {
         currentView={ this.state.currentView } 
         mostRecentData={ this.state.mostRecentData } 
         color={ this.state.color }
+        window={ this.state.window }
         onClick={ this.handleClick }
       />
     )

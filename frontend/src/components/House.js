@@ -14,6 +14,8 @@ class House extends Component {
   }
   
   returnCurrentView = () => {
+    let window = this.props.window * -1
+
     switch (this.props.currentView) {
       case 0:
         return (
@@ -27,8 +29,8 @@ class House extends Component {
                 />
                 
                 <Bar 
-                  scores={ this.props.data.map(elem => parseInt(elem.current).toFixed(0 )) } 
-                  timestamps={  this.props.data.map(elem => parseInt(elem.timestamp) ) } 
+                  scores={ this.props.data.slice(window).map(elem => parseInt(elem.current).toFixed(0 )) } 
+                  timestamps={  this.props.data.slice(window).map(elem => parseInt(elem.timestamp) ) } 
                   color={ this.props.color } />
           </div>
         )
@@ -45,8 +47,8 @@ class House extends Component {
                   />
                   
                   <Bar 
-                    scores={ this.props.data.map(elem => parseFloat(elem.voltage) * 10 ) } 
-                    timestamps={  this.props.data.map(elem => parseInt(elem.timestamp) ) } 
+                    scores={ this.props.data.slice(window).map(elem => parseFloat(elem.voltage) * 10 ) } 
+                    timestamps={  this.props.data.slice(window).map(elem => parseInt(elem.timestamp) ) } 
                     color={ this.props.color } />
             </div>
           )

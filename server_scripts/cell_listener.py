@@ -1,24 +1,18 @@
+from redisutils import *
 import socket
 import fcntl
 import json
 import struct
-import redis
 
-LISTEN_PORT = 4010
-URL, SEND_PORT = 'cloudsocket.hologram.io', 9999
-BUFFER_SIZE = 1024
+with open('moon_config.json', 'r') as f:
+    config = json.load(f)
+
+LISTEN_PORT = config['cellular']['listen_port']
+SEND_PORT = config['cellular']['send_port']
+URL = config['cellular']['url']
+BUFFER_SIZE = config['cellular']['buffer_size']
 
 server_socket = socket.socket()
-
-def connectRedis():
-        try:
-                s = redis.Redis(host='localhost', port=6379)
-                s.ping()
-                print 'Connected to Redis.'
-                return s
-        except:
-                print "Failed to connect to Redis."
-                return None
 
 def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -28,8 +22,6 @@ def get_ip_address(ifname):
         struct.pack('256s', ifname[:15])
     )[20:24])
 
-
-r = connectRedis()
 ip = get_ip_address('wwan0')
 
 print 'Listening at:', ip, ':', LISTEN_PORT
@@ -39,14 +31,23 @@ server_socket.listen(1)
 (client_socket, client_address) = server_socket.accept()
 
 while True:
-    client_input = client_socket.recv(1024).upper()
+        client_input = client_socket.recv(1024).upper()
+        if(client_input):
+                print client_input
 
     if (client_input == "send"):
         print 'got send cmd'
         
-        lat = r.lrange('gps-lat', 0, 1)
-  
-        payload = {'k':'WC]A@>i&','d':lat,'t':'TEST'}
+       # lat = r.lrange('gps-lat', 0, 1)
+        
+        test = "test message..."
+
+        payload = {
+                        'k':'WC]A@>i&',
+                        'd':test,
+                        't':'TEST'
+                }
+
         msg = json.dumps(payload)
 
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

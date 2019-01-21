@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { addInitialData } from '../js/actions.js'
 import store from '../js/store'
 import axios from 'axios'
-import moment from 'moment'
 
 const mapStateToProps = state => {
   return { data: state.solar }
@@ -24,17 +23,18 @@ constructor(props) {
 }
 
 componentWillMount() {
-    axios.get(`/api/window/solar-set/30`)
+    axios.get(`/api/window/solar-set/${this.state.window}`)
         .then(res => this.receivedInitialData(res.data))
 }
 
 receivedInitialData = (data) => {
-    
-    data.forEach(elem => {
-      console.log(moment(elem.timestamp * 1000).format())
-    })
-
     store.dispatch( addInitialData(data, 'solar') )
+}
+
+handleChangeWindow = (val) => {
+  this.setState({
+    window: val
+  })
 }
 
 handleClick = () => {
