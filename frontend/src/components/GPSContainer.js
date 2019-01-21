@@ -38,7 +38,7 @@ class ReduxGPSContainer extends Component {
     let view = this.state.currentView + 1
 
     this.setState({
-      currentView: view < 4 ? view : 0
+      currentView: view < 2 ? view : 0
     })
   }
 

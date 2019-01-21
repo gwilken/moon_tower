@@ -86,3 +86,26 @@ a {
 .mapboxgl-map {
   margin-top: 10px;
 }
+
+.gps-info-container {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  justify-content: space-evenly;
+}
+
+.gps-info-row {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.gps-info-label {
+  color: silver;
+  font-size: .75rem;
+}
+
+.gps-info-data {
+  color: white;
+  font-size: .9rem;
+}
