@@ -17,7 +17,7 @@ const rootReducer = (state = initialState, action) => {
         return {...state, [action.key]: action.payload }
   
       case PUSH_DATA:
-        let newArray = state.solarData.slice()
+        let newArray = state[action.key].slice()
         newArray.push(action.payload)
         return {...state, [action.key]: newArray }
         
