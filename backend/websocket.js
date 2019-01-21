@@ -17,19 +17,16 @@ subscriber.on('ready', () => {
     console.log('msg:', key)
 
     let hashKey = await zrevrange(key, 0, 0)
-    console.log(hashKey)
-    //let hash = await hgetall(hashKey)
+    //console.log(hashKey)
+    
+    let hash = await hgetall(hashKey)
 
-    getter.hgetall(hashKey, (err, res) => {
-        console.log(res)
-    })
-
-    // wss.clients.forEach(client => {
-    //     if (client.readyState === WebSocket.OPEN) {
-    //         console.log('sending to clients:', hash)
-    //         client.send(JSON.stringify(hash));
-    //     }
-    // });
+    wss.clients.forEach(client => {
+        if (client.readyState === WebSocket.OPEN) {
+            console.log('sending to clients:', hash)
+            client.send(JSON.stringify(hash));
+        }
+    });
   })
 });
 

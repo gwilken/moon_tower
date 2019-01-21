@@ -9,6 +9,6 @@
     "polling_freq": 10
   },
   "gps": {
-    "polling_freq": 2
+    "polling_freq": 10
   }
 }
