@@ -12,7 +12,7 @@ ws.onmessage = (event) => {
         let data = JSON.parse(event.data)
 
         if (data.parent) {
-            store.dispatch( pushData(event.data, data.parent) )
+            store.dispatch( pushData(data, data.parent) )
         }
 
         console.log(data)
