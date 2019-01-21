@@ -5,8 +5,8 @@ import House from './House'
 import GPS from './GPS'
 // import Fridge from './Fridge'
 
-require  ('../js/websocket')
 require('../js/ui/resizeListener')
+require('./Websocket')
 
 const App = () => {
   return (

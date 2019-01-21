@@ -17,9 +17,11 @@ const recordEvent = async (event) => {
     redisClient.zadd(event.type, timestamp, event.id)
 }
 
-const getFullEvent = (type, min = 0, max = 30) => {
+const getFullEvent = (type, min = -30, max = -1) => {
     return new Promise( async (resolve, reject) => {
         let list = await asyncZrange(type, min, max)
+
+        console.log(type, list)
 
         let res = list.map(async (key) => {
             return await asyncHgetall(key)

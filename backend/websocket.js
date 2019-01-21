@@ -19,7 +19,7 @@ subscriber.on('ready', () => {
     let hashKey = await zrevrange(key, 0, 0)
     //console.log(hashKey)
     
-    setTimeout(() => {
+    setTimeout(async () => {
         let hash = await hgetall(hashKey)
         console.log(hash)
 
