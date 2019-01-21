@@ -19,8 +19,8 @@ subscriber.on('ready', () => {
     let hashKey = await zrevrange(key, 0, 0)
     console.log(hashKey)
     //let hash = await hgetall(hashKey)
-    
-    getter.hgetall(hashkey, (err, res) => {
+
+    getter.hgetall(hashKey, (err, res) => {
         console.log(res)
     })
 
