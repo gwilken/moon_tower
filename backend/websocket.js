@@ -17,6 +17,7 @@ subscriber.on('ready', () => {
     console.log('msg:', key)
 
     let hashKey = await zrevrange(key, 0, 0)
+    console.log(hashKey)
     let hash = await hgetall(hashKey)
 
     wss.clients.forEach(client => {
