@@ -3,9 +3,9 @@ import json
 import xmlrpclib
 
 server = xmlrpclib.Server('http://192.168.2.3:9001/RPC2')
+status = { "proceses": server.supervisor.getAllProcessInfo() }
 
-x = server.supervisor.getAllProcessInfo()
-
-add_record('supervisor', x[0])
-
-
+while True:
+  add_record('supervisor', status)
+  time.sleep(10)
+    
