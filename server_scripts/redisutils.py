@@ -6,10 +6,10 @@ def connect_redis():
     try:
         s = redis.Redis(host='localhost', port=6379)
         s.ping()
-        print 'Connected to Redis.'
+        print('Connected to Redis.')
         return s
     except:
-        print "Failed to connect to Redis."
+        print("Failed to connect to Redis.")
         return None
 
 
@@ -21,7 +21,7 @@ def add_record(set, values):
     values['parent'] = set
     hashkey = set + '-hash-' + str(timestamp)
 
-    print hashkey
+    print(hashkey)
     
     try:
         r.zadd(set + '-set', hashkey, timestamp )
@@ -32,7 +32,7 @@ def add_record(set, values):
         r.expire(hashkey, 86400)
 
     except Exception as e:
-        print 'Error setting Redis keys:', e
+        print('Error setting Redis keys:', e)
 
 
 #deletes all keys of a sorted set before now
@@ -44,13 +44,13 @@ def clear_sorted_set(set):
         r.zremrangebyscore(set, 0, timestamp)
 
     except Exception as e:
-        print 'Error deleting element of set:', e
+        print('Error deleting element of set:', e)
 
 
 r = connect_redis()
 
 
 while not r:
-    print 'Attemping Redis reconnect in 1 sec'
+    print('Attemping Redis reconnect in 1 sec')
     time.sleep(1)
     r = connect_redis()
