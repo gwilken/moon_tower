@@ -1,8 +1,8 @@
 from redisutils import *
 import json
-from xmlrpc.client import ServerProxy
+import xmlrpclib
 
-server = ServerProxy('http://192.168.2.3:9001/RPC2')
+server = xmlrpclib.Server('http://192.168.2.3:9001/RPC2')
 
 x = server.supervisor.getAllProcessInfo()
 
