@@ -22,5 +22,4 @@ router.get('/allkeys', async (req, res) => {
     res.json(test)
 })
 
-
 module.exports = router
