@@ -15,7 +15,7 @@ class Solar extends Component {
   
   returnCurrentView = () => {
     let window = this.props.window * -1
- 
+    
     switch (this.props.currentView) {
       case 0:
         return (
@@ -86,7 +86,6 @@ class Solar extends Component {
 
   render () {
       let currentView = this.returnCurrentView()
-      console.log( this.props.data )
 
       return (
         <div>

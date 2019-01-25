@@ -8,7 +8,7 @@ import axios from 'axios'
 const mapStateToProps = state => {
   return { 
       data: state.gps,
-      lastGps: state.gps[state.gps.length - 1]
+      mostRecentData: state.gps[state.gps.length - 1]
   }
 }
 
@@ -19,8 +19,6 @@ class ReduxGPSContainer extends Component {
       this.state = {
           currentView: 0,
           color: 'cyan',
-          lastLonLat: null,
-          mostRecentData: null,
       }
   }
 
@@ -47,7 +45,7 @@ class ReduxGPSContainer extends Component {
       <GPS
         data={ this.props.data} 
         currentView={ this.state.currentView } 
-        mostRecentData={ this.state.mostRecentData } 
+        mostRecentData={ this.props.mostRecentData } 
         color={ this.state.color }
         onClick={ this.handleClick }
       />

@@ -1,17 +1,38 @@
 import React, { Component } from 'react'
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+import ReactMapboxGl, { Layer, Feature, Source } from "react-mapbox-gl";
 import Header from './Header'
 
 const Map = ReactMapboxGl({
-accessToken: "pk.eyJ1IjoiZ3dpbGtlbiIsImEiOiJjanI1ajR6Z2QwMWk1NDRubXYyYmV6OHVkIn0.D68kEgoBzr8IZn8zz40MOQ"
+  accessToken: "pk.eyJ1IjoiZ3dpbGtlbiIsImEiOiJjanI1ajR6Z2QwMWk1NDRubXYyYmV6OHVkIn0.D68kEgoBzr8IZn8zz40MOQ"
 });
 
 class GPS extends Component {
   constructor(props) {
       super()
 
-      this.state = {
+      this.state = {}
+  }
+
+  returnLastCooridates = () => {
+    return this.props.mostRecentData ? [parseFloat(this.props.mostRecentData.longitude), parseFloat(this.props.mostRecentData.latitude)] : [-118.2602235, 34.101106833]
+  }
+
+  returnTrack = () => {
+    return {
+      "type": "geojson",
+      "data": {
+          "type": "Feature",
+          "geometry": {
+              "type": "LineString",
+              "coordinates": this.props.data.map(elem => {
+                return [parseFloat(elem.longitude), parseFloat(elem.latitude)]
+              })
+          },
+          "properties": {
+              "title": "Moontower Track"
+          }
       }
+    }
   }
 
   returnLastDataList = () => {
@@ -39,41 +60,53 @@ class GPS extends Component {
     switch (this.props.currentView) {
       case 0:
         return (
-          <div className="panel">
-              <Header title="GPS" color="cyan" onClick={ this.props.onClick }/>
-              <Map
-                  // eslint-disable-next-line 
-                  style="mapbox://styles/gwilken/cjr5ki34136js2rt88hwjq6km"
-                  zoom={ [14] }
-                  center= { this.props.lastGps ? [parseFloat(this.props.lastGps.longitude), parseFloat(this.props.lastGps.latitude)] : [-118.2602235, 34.101106833] }
-                  containerStyle={{
-              height: "90%",
-              width: "100%"
-              }}>
-                  <Layer
-                      type="symbol"
-                      id="marker"
-                      layout={{ "icon-image": "marker-15" }}>
-                      <Feature coordinates={ [this.props.data.longitude, this.props.data.latitude] }/>
-                  </Layer>
-              </Map>
-          </div>        
+          <Map
+            // eslint-disable-next-line 
+            style="mapbox://styles/gwilken/cjr5ki34136js2rt88hwjq6km"
+            // zoom={ [14] }
+            center= { this.returnLastCooridates() }
+            containerStyle={{
+            height: "90%",
+            width: "100%"
+          }}>
+
+          <Source
+            id= "track"
+            geoJsonSource={ this.returnTrack() } />
+
+          <Layer 
+            id="track-layer"
+            type="line"
+            sourceId="track"
+            paint={{
+              "line-color": "yellow",
+              "line-opacity": 1,
+              "line-width": 10
+            }}/>
+
+            <Layer
+                id="marker"
+                type="circle"
+                paint={{
+                  "circle-radius": 5,
+                  "circle-stroke-width": 2,
+                  "circle-stroke-color": "yellow"
+                }}>
+            
+              <Feature coordinates={ this.returnLastCooridates() } />
+            </Layer>
+          </Map>  
         )
     
       case 1:
-        return (
-          <div className="panel">
-            <Header title="GPS" color="cyan" onClick={ this.props.onClick }/>
-
-            <div className="gps-info-container">
-              { this.returnLastDataList() }
-            </div>
-          </div>   
-      )
+        return ( 
+          <div className="gps-info-container">
+            { this.returnLastDataList() }
+          </div>
+         )
 
       default:
           break;
-
     }
   }
 
@@ -82,7 +115,10 @@ class GPS extends Component {
 
       return (
         <div>
-          { currentView }
+           <div className="panel">
+            <Header title="GPS" color="cyan" onClick={ this.props.onClick }/>
+            { currentView }
+          </div>
         </div>
       )
   }

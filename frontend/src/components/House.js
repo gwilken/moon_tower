@@ -20,36 +20,34 @@ class House extends Component {
       case 0:
         return (
           <div className="panel">
-              <Header
-                title="House" 
-                color={ this.props.color } 
-                value={ this.state.value } 
-                unit="mA" 
-                onClick={ this.props.onClick }
-                />
-                
-                <Bar 
-                  scores={ this.props.data.slice(window).map(elem => parseInt(elem.current).toFixed(0 )) } 
-                  timestamps={  this.props.data.slice(window).map(elem => parseInt(elem.timestamp) ) } 
-                  color={ this.props.color } />
+            <Header
+              title="House" 
+              color={ this.props.color } 
+              value={ this.state.value } 
+              unit="mA" 
+              onClick={ this.props.onClick }/>
+              
+              <Bar 
+                scores={ this.props.data.slice(window).map(elem => parseInt(elem.current).toFixed(0 )) } 
+                timestamps={  this.props.data.slice(window).map(elem => parseInt(elem.timestamp) ) } 
+                color={ this.props.color } />
           </div>
         )
       
         case 1:
           return (
             <div className="panel">
-                <Header
-                  title="House" 
-                  color={ this.props.color } 
-                  value={ this.state.value } 
-                  unit="V" 
-                  onClick={ this.props.onClick }
-                  />
-                  
-                  <Bar 
-                    scores={ this.props.data.slice(window).map(elem => parseFloat(elem.voltage) * 10 ) } 
-                    timestamps={  this.props.data.slice(window).map(elem => parseInt(elem.timestamp) ) } 
-                    color={ this.props.color } />
+              <Header
+                title="House" 
+                color={ this.props.color } 
+                value={ this.state.value } 
+                unit="V" 
+                onClick={ this.props.onClick } />
+                
+                <Bar 
+                  scores={ this.props.data.slice(window).map(elem => parseFloat(elem.voltage) * 10 ) } 
+                  timestamps={  this.props.data.slice(window).map(elem => parseInt(elem.timestamp) ) } 
+                  color={ this.props.color } />
             </div>
           )
 
@@ -61,8 +59,7 @@ class House extends Component {
                 color={ this.props.color } 
                 value={ this.state.value } 
                 unit="V" 
-                onClick={ this.props.onClick }
-                />
+                onClick={ this.props.onClick } />
             </div>
           )
           
@@ -74,8 +71,7 @@ class House extends Component {
                 color={ this.props.color } 
                 value="Settings"
                 unit="" 
-                onClick={ this.props.onClick }
-                />
+                onClick={ this.props.onClick } />
             </div>
           )
 
@@ -86,7 +82,7 @@ class House extends Component {
 
   render () {
       let currentView = this.returnCurrentView()
-      console.log( this.props.data )
+    //  console.log( this.props.data )
 
       return (
         <div>

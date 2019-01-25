@@ -8,16 +8,12 @@ const redis = require('./redisUtils.js')
 // })
 
 router.get('/key/:key/:start?/:end?', async (req, res) => {  
-   // console.log(req.params.key)
     let test = await redis.getFullEvent(req.params.key, req.params.start, req.params.end)
-   // console.log(test)
     res.json(test)
 })
 
 router.get('/window/:key/:window', async (req, res) => {  
-    console.log(req.params.key)
     let test = await redis.getFullEvent(req.params.key, req.params.window * -1, -1)
-    console.log(test.length)
     res.json(test)
 })
 

@@ -86,8 +86,9 @@ class ReduxBarChart extends Component {
       return (  
         <g 
           onMouseOver={ this.handleHover(point) }
-          onMouseOut={ this.handleHover(null) } >
-  
+          onMouseOut={ this.handleHover(null) }
+          key={'bar-' + index} >
+          
           <rect
             x={ x + (padding / 4) }
             y={ y }
@@ -95,9 +96,7 @@ class ReduxBarChart extends Component {
             height={ barHeight  }
             fill={ this.props.color }
             strokeWidth={ timestamps.length > 30 ? 0 : 1 }
-            stroke={ this.props.color }
-            key={'bar-' + index}
-          />
+            stroke={ this.props.color } />
          </g>
         )}
     )

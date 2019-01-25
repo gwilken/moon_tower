@@ -53,8 +53,7 @@ render () {
         window={ this.state.window }
         mostRecentData={ this.state.mostRecentData } 
         color={ this.state.color }
-        onClick={ this.handleClick }
-      />
+        onClick={ this.handleClick } />
     )
   }
 }
