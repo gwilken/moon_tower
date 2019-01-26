@@ -45,5 +45,5 @@ gps_socket.watch()
 
 while True:
     print unpack_gps_data()
-    add_record( 'gps', unpack_gps_data() )
+    add_hash_update_set( 'gps', unpack_gps_data() )
     time.sleep(GPS_UPDATE)
