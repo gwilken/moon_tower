@@ -38,9 +38,11 @@ def add_hash(hashname, values):
     print(hashname)
     
     try:
-        for key, value in values.items():
-            r.hmset(hashname, key, value)
-            r.expire(hashname, 86400)
+        r.hmset(hashname, values)
+
+        # for key, value in values.items():
+        #     r.hmset(hashname, key, value)
+        #     r.expire(hashname, 86400)
 
     except Exception as e:
         print('Error setting Redis keys:', e)
