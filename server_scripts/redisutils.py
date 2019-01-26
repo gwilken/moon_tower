@@ -24,12 +24,7 @@ def add_hash_update_set(set, values):
     
     try:
         r.zadd(set + '-set', hashkey, timestamp )
-  
         r.hmset(hashkey, values)
-
-        # for key, value in values.items():
-        #     r.hset(hashkey, key, value)
-
         r.expire(hashkey, 86400)
 
     except Exception as e:
@@ -43,9 +38,6 @@ def add_system_hash(hashname, values):
     try:
         r.hmset(hashname, values)
         r.zadd('system-set', hashname, timestamp)
-        # for key, value in values.items():
-        #     r.hmset(hashname, key, value)
-        #     r.expire(hashname, 86400)
 
     except Exception as e:
         print('Error setting Redis keys:', e)

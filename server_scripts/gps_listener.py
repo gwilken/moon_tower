@@ -16,6 +16,8 @@ def unpack_gps_data():
             if new_data:
                 data_stream.unpack(new_data)
 
+                print data_stream.TPV
+
                 try:
                     gps_data = {
                         'latitude': data_stream.TPV['lat'],
