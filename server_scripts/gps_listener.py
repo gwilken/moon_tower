@@ -15,7 +15,7 @@ def unpack_gps_data():
         if report['class'] == 'TPV':
             print(report)
             return report
-    catch:
+    except:
         return
 
 while True:
