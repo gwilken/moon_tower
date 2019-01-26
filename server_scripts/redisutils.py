@@ -40,7 +40,7 @@ def add_system_hash(hashname, values):
     
     try:
         r.hmset(hashname + '-hash', values)
-        r.zadd('system-set', hashname, timestamp)
+        r.zadd('system-set', hashname + '-hash', timestamp)
 
     except Exception as e:
         print('Error setting Redis keys:', e)
