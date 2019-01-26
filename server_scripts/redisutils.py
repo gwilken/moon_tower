@@ -15,6 +15,7 @@ def connect_redis():
 
 #creates a hash map of values and adds key of that map to a sorted set of timestamps
 def add_hash_update_set(set, values):
+    print values
     timestamp = int(time.time())
     values['timestamp'] = timestamp
     values['parent'] = set
