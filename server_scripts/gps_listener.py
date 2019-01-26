@@ -4,7 +4,6 @@ from redisutils import *
 from gps3 import gps3
 import json
 
-
 with open('moon_config.json', 'r') as f:
     config = json.load(f)
 
@@ -33,6 +32,5 @@ gps_socket.connect()
 gps_socket.watch()
 
 while True:
-    print unpack_gps_data()
     add_hash_update_set( 'gps', unpack_gps_data() )
     time.sleep(GPS_UPDATE)
