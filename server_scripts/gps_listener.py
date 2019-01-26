@@ -21,6 +21,9 @@ def unpack_gps_data():
             print(report)
             return report
     
+    except:
+        return
+    
 
 while True:
     unpack_gps_data()
