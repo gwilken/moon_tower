@@ -12,13 +12,12 @@ GPS_UPDATE = config['gps']['polling_freq']
 def unpack_gps_data():
     try:        
         for new_data in gps_socket:
-            if new_data:
-                try:
-                    data_stream.unpack(new_data)
-                    return data_stream.TPV
+            try:
+                data_stream.unpack(new_data)
+                return data_stream.TPV
 
-                except Exception as e:
-                    print 'Error setting redis gps keys:', e
+            except Exception as e:
+                print 'Error setting redis gps keys:', e
             
     except Exception as e:
         print 'Error unpacking gps stream:', e
