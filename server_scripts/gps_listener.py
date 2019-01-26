@@ -8,15 +8,14 @@ import gps
 session = gps.gps("localhost", "2947")
 session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
  
-
 def unpack_gps_data():
     try:
         report = session.next()
-        # Wait for a 'TPV' report and display the current time
-        # To see all report data, uncomment the line below
-        # print(report)
+ 
         if report['class'] == 'TPV':
             print(report)
+            return report
+
             # if hasattr(report, 'time'):
                 # print(report.time)
 
