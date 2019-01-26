@@ -34,7 +34,7 @@ def add_hash_update_set(set, values):
 #update system set and create hash
 def add_system_hash(hashname, values):
     timestamp = int(time.time())
-    values['parent'] = hashname
+    values['parent'] = 'system'
     print(hashname)
     
     try:
