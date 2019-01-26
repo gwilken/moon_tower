@@ -35,7 +35,7 @@ def add_hash_update_set(set, values):
 
 #update system set and create hash
 def add_hash(hashname, values):
-    print(hashashnamehkey)
+    print(hashname)
     
     try:
         for key, value in values.items():
