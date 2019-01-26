@@ -50,6 +50,6 @@ def read_solar_data():
         print 'Error reading solar ina219 data:', e
 
 while True:
-    add_record( 'house', read_house_data() )
-    add_record( 'solar', read_solar_data() )
+    add_hash_update_set( 'house', read_house_data() )
+    add_hash_update_set( 'solar', read_solar_data() )
     time.sleep(POLLING_FREQ)
