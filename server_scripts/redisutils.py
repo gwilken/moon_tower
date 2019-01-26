@@ -20,9 +20,7 @@ def add_hash_update_set(set, values):
     values['timestamp'] = timestamp
     values['parent'] = set
     hashkey = set + '-hash-' + str(timestamp)
-
-    print(hashkey)
-    
+  
     try:
         r.zadd(set + '-set', hashkey, timestamp )
         r.hmset(hashkey, values)
@@ -36,8 +34,7 @@ def add_system_hash(hashname, values):
     timestamp = int(time.time())
     values['parent'] = 'system'
     values['type'] = hashname
-    print(hashname)
-    
+
     try:
         r.hmset(hashname + '-hash', values)
         r.zadd('system-set', hashname + '-hash', timestamp)
