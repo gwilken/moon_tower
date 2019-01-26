@@ -39,7 +39,7 @@ def add_hash(hashname, values):
     
     try:
         for key, value in values.items():
-            r.hset(hashname, key, value)
+            r.hmset(hashname, key, value)
             r.expire(hashname, 86400)
 
     except Exception as e:
