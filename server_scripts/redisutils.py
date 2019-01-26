@@ -25,8 +25,10 @@ def add_hash_update_set(set, values):
     try:
         r.zadd(set + '-set', hashkey, timestamp )
   
-        for key, value in values.items():
-            r.hset(hashkey, key, value)
+        r.hmset(hashkey, values)
+
+        # for key, value in values.items():
+        #     r.hset(hashkey, key, value)
 
         r.expire(hashkey, 86400)
 

@@ -14,7 +14,11 @@ class GPS extends Component {
   }
 
   returnLastCooridates = () => {
-    return this.props.mostRecentData ? [parseFloat(this.props.mostRecentData.longitude), parseFloat(this.props.mostRecentData.latitude)] : [-118.2602235, 34.101106833]
+    if (this.props.mostRecentData) {
+      if (this.props.mostRecentData.longitude !== 'n/a' && this.props.mostRecentData.latitude !== 'n/a') {
+        return [ parseFloat(this.props.mostRecentData.longitude), parseFloat(this.props.mostRecentData.latitude) ]
+      }
+    }
   }
 
   returnTrack = () => {
@@ -25,7 +29,11 @@ class GPS extends Component {
           "geometry": {
               "type": "LineString",
               "coordinates": this.props.data.map(elem => {
-                return [parseFloat(elem.longitude), parseFloat(elem.latitude)]
+                if (elem.longitude !== 'n/a' && elem.latitude !== 'n/a') {
+                  return [parseFloat(elem.longitude), parseFloat(elem.latitude)]
+                } else {
+                  return
+                }
               })
           },
           "properties": {
@@ -40,7 +48,7 @@ class GPS extends Component {
 
     for ( let [label, data] of Object.entries( this.props.data[this.props.data.length - 1]) ) {
       listArr.push(
-        <div className="gps-info-row" label={label} >
+        <div className="gps-info-row" label={ label } >
           <div className="gps-info-data">{ data }</div>
           <div className="gps-info-label">{ label }</div>
         </div>
@@ -85,13 +93,13 @@ class GPS extends Component {
             }}/>
 
             <Layer
-                id="marker"
-                type="circle"
-                paint={{
-                  "circle-radius": 5,
-                  "circle-stroke-width": 2,
-                  "circle-stroke-color": "yellow"
-                }}>
+              id="marker"
+              type="circle"
+              paint={{
+                "circle-radius": 5,
+                "circle-stroke-width": 2,
+                "circle-stroke-color": "yellow"
+              }}>
             
               <Feature coordinates={ this.returnLastCooridates() } />
             </Layer>
