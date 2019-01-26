@@ -19,5 +19,6 @@ def unpack_gps_data():
         return
 
 while True:
-    add_hash_update_set( 'gps', unpack_gps_data() )
+    unpack_gps_data()
+   # add_hash_update_set( 'gps', unpack_gps_data() )
     time.sleep(GPS_UPDATE)
