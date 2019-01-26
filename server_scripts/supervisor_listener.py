@@ -11,9 +11,9 @@ while True:
   try:
     for key, value in status.items():
       r.hset('supervisor-hash', key, value)
-      r.expire(hashkey, 86400)
+      r.expire('supervisor-hash', 86400)
 
   except Exception as e:
       print('Error setting Redis keys:', e)
-      
+
   time.sleep(10)
