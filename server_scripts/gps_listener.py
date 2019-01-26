@@ -12,7 +12,8 @@ GPS_UPDATE = config['gps']['polling_freq']
 # Listen on port 2947 (gpsd) of localhost
 session = gps.gps("localhost", "2947")
 session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
- 
+report = {}
+
 def unpack_gps_data():
     try:
         report = session.next()
@@ -21,7 +22,7 @@ def unpack_gps_data():
             return report
     
     except:
-        return
+        return report
     
 
 while True:
