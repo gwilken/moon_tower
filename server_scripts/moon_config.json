@@ -9,7 +9,7 @@
     "polling_freq": 10
   },
   "gps": {
-    "polling_freq": 10
+    "polling_freq": 5
   },
   "cellular": {
     "listen_port": 4010,
