@@ -1,4 +1,4 @@
-import { WINDOW_RESIZE, PUSH_DATA, ADD_INITIAL_DATA, PUSH_AND_SHIFT_DATA } from './constants'
+import { WINDOW_RESIZE, PUSH_DATA, ADD_INITIAL_DATA, PUSH_AND_SHIFT_DATA, UPDATE_KEY } from './constants'
 
 export const windowResize = (field) => (
     {
@@ -26,6 +26,14 @@ export const windowResize = (field) => (
   export const pushAndShiftData = (data, key) => (
     {
       type: PUSH_AND_SHIFT_DATA,
+      payload: data,
+      key: key
+    }
+  )
+
+  export const updateKey = (data, key) => (
+    {
+      type: UPDATE_KEY,
       payload: data,
       key: key
     }

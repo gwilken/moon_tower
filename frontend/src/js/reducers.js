@@ -1,11 +1,12 @@
-import {WINDOW_RESIZE, PUSH_DATA, ADD_INITIAL_DATA, PUSH_AND_SHIFT_DATA } from './constants'
+import {WINDOW_RESIZE, PUSH_DATA, ADD_INITIAL_DATA, PUSH_AND_SHIFT_DATA, UPDATE_KEY } from './constants'
 
 const initialState = {
     windowWidth:  window.innerWidth,
     house: [],
     solar: [],
     fridge: [],
-    gps: []
+    gps: [],
+    supervisor: {}
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -27,6 +28,9 @@ const rootReducer = (state = initialState, action) => {
         newArray2.push(action.payload)
         return {...state, [action.key]: newArray2 }
         
+      case UPDATE_KEY:
+        return {...state, [action.key]: action.payload }
+
       default:
         return state;
     }

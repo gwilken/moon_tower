@@ -1,4 +1,4 @@
-import { pushData } from '../js/actions.js'
+import { pushData, updateKey } from '../js/actions.js'
 import store from '../js/store'
 
 
@@ -9,10 +9,13 @@ const createWebSocket = () => {
         try {
             let data = JSON.parse(event.data)
     
-            console.log(data)
-
             if (data.parent) {
-                store.dispatch( pushData(data, data.parent) )
+                if(data.parent === 'system') {
+                    console.log(data)
+                    store.dispatch (updateKey(data, data.type) )
+                } else {
+                    store.dispatch( pushData(data, data.parent) )
+                }
             }
     
             //console.log(data)
