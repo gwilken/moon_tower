@@ -12,20 +12,17 @@ GPS_UPDATE = config['gps']['polling_freq']
 # Listen on port 2947 (gpsd) of localhost
 session = gps.gps("localhost", "2947")
 session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
-report = {}
 
 def unpack_gps_data():
     try:
         report = session.next()
  
         if report['class'] == 'TPV':
-            return report
-    
+            add_hash_update_set( 'gps', report )
+        
     except:
-        return report
-    
+        return
 
 while True:
-    #unpack_gps_data()
-    add_hash_update_set( 'gps', unpack_gps_data() )
+    unpack_gps_data()
     time.sleep(GPS_UPDATE)
