@@ -15,8 +15,8 @@ class GPS extends Component {
 
   returnLastCooridates = () => {
     if (this.props.mostRecentData) {
-      if (this.props.mostRecentData.longitude !== 'n/a' && this.props.mostRecentData.latitude !== 'n/a') {
-        return [ parseFloat(this.props.mostRecentData.longitude), parseFloat(this.props.mostRecentData.latitude) ]
+      if (this.props.mostRecentData.lon !== 'n/a' && this.props.mostRecentData.lat !== 'n/a') {
+        return [ parseFloat(this.props.mostRecentData.lon), parseFloat(this.props.mostRecentData.lat) ]
       }
     }
   }
@@ -29,8 +29,8 @@ class GPS extends Component {
           "geometry": {
               "type": "LineString",
               "coordinates": this.props.data.map(elem => {
-                if (elem.longitude !== 'n/a' && elem.latitude !== 'n/a') {
-                  return [parseFloat(elem.longitude), parseFloat(elem.latitude)]
+                if (elem.lon !== 'n/a' && elem.lat !== 'n/a') {
+                  return [parseFloat(elem.lon), parseFloat(elem.lat)]
                 } else {
                   return
                 }
