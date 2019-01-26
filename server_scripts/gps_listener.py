@@ -18,7 +18,7 @@ def unpack_gps_data():
         report = session.next()
  
         if report['class'] == 'TPV':
-            add_hash_update_set( 'gps', report )
+            add_hash_update_set( 'gps', report.__dict__ )
         
     except:
         return
