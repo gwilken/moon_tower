@@ -1,3 +1,4 @@
+from redisutils import *
 import socket
 
 def is_connected():
