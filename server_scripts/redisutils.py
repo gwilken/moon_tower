@@ -35,10 +35,11 @@ def add_hash_update_set(set, values):
 def add_system_hash(hashname, values):
     timestamp = int(time.time())
     values['parent'] = 'system'
+    values['type'] = hashname
     print(hashname)
     
     try:
-        r.hmset(hashname, values)
+        r.hmset(hashname + '-hash', values)
         r.zadd('system-set', hashname, timestamp)
 
     except Exception as e:

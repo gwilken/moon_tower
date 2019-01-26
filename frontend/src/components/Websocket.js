@@ -9,6 +9,8 @@ const createWebSocket = () => {
         try {
             let data = JSON.parse(event.data)
     
+            console.log(data)
+
             if (data.parent) {
                 store.dispatch( pushData(data, data.parent) )
             }
