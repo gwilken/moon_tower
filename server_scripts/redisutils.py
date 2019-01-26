@@ -14,8 +14,7 @@ def connect_redis():
 
 
 #creates a hash map of values and adds key of that map to a sorted set of timestamps
-def add_record(set, values):
-
+def add_hash_update_set(set, values):
     timestamp = int(time.time())
     values['timestamp'] = timestamp
     values['parent'] = set
@@ -34,10 +33,21 @@ def add_record(set, values):
     except Exception as e:
         print('Error setting Redis keys:', e)
 
+#update system set and create hash
+def add_hash(hashname, values):
+    print(hashkey)
+    
+    try:
+        for key, value in values.items():
+            r.hset(hashname, key, value)
+            r.expire(hashname, 86400)
+
+    except Exception as e:
+        print('Error setting Redis keys:', e)
+
 
 #deletes all keys of a sorted set before now
 def clear_sorted_set(set):
-
     timestamp = int(time.time())
 
     try:
