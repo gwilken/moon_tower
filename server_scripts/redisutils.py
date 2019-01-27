@@ -32,6 +32,7 @@ def add_hash_update_set(set, values):
 #update system set and create hash
 def add_system_hash(hashname, values):
     timestamp = int(time.time())
+    values['timestamp'] = timestamp
     values['parent'] = 'system'
     values['type'] = hashname
 
