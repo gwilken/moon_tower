@@ -11,8 +11,47 @@ class System extends Component {
   
   returnSupervisorList = () => {
     if (this.props.supervisor.proceses) {
-      let list = this.props.supervisor.proceses
-      console.log(list)
+      let arr = JSON.parse(this.props.supervisor.proceses)
+      console.log(arr)
+      let list = arr.map(elem => {
+        return (
+          <div className="system-reporting-row">
+            <p>{ elem.name }</p>
+            <div>
+              <p className="system-reporting-state" data-state={ elem.state }>
+                { elem.statename.toLowerCase() }
+              </p>
+            </div>
+          </div>
+        )
+      })
+
+      return (
+        <div>
+          <h3>Supervisor</h3>
+          { list }
+        </div>
+      )
+    }
+  }
+
+  returnNetworkStatus = () => {
+    if (this.props.network) { 
+
+      return (
+        <div>
+          <h3>Network</h3>
+          <div className="system-reporting-row">
+            <p>Cellular Up:</p>
+            <p>{ this.props.network.connected }</p>
+          </div>
+          <div className="system-reporting-row">
+            <p>Wan IP:</p>
+            <p>{ this.props.network.wwanIp }</p>
+          </div>
+
+        </div>
+      )
     }
   }
 
@@ -21,7 +60,7 @@ class System extends Component {
       case 0:
         return (
           <div>
-            <h2>Reporting</h2>
+            { this.returnNetworkStatus() }
             { this.returnSupervisorList() }
           </div>
         )
@@ -50,7 +89,7 @@ class System extends Component {
   }
 
   render () {
-    //console.log(this.props)
+    console.log( this.props )
       let currentView = this.returnCurrentView()
 
       return (
