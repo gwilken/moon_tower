@@ -15,7 +15,7 @@ class Solar extends Component {
   
   returnCurrentView = () => {
     let window = this.props.window * -1
-    
+
     switch (this.props.currentView) {
       case 0:
         return (
@@ -23,7 +23,7 @@ class Solar extends Component {
               <Header
                 title="Solar" 
                 color={ this.props.color } 
-                value={ this.state.value } 
+                value={ this.props.data.length > 1 ? parseFloat(this.props.data[this.props.data.length - 1].current).toFixed(0) : null } 
                 unit="mA" 
                 onClick={ this.props.onClick }
                 />
@@ -41,7 +41,7 @@ class Solar extends Component {
                 <Header
                   title="Solar" 
                   color={ this.props.color } 
-                  value={ this.state.value } 
+                  value={ this.props.data.length > 1 ? parseFloat(this.props.data[this.props.data.length - 1].voltage).toFixed(2) : null } 
                   unit="V" 
                   onClick={ this.props.onClick }
                   />

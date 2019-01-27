@@ -8,7 +8,7 @@ class House extends Component {
       super()
 
       this.state = {
-        value: 240,
+        value: 510,
         unit: 'mA'
       }
   }

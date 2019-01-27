@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from './Header'
+import moment from 'moment'
 
 class System extends Component {
   constructor(props) {
@@ -49,7 +50,10 @@ class System extends Component {
             <p>Wan IP:</p>
             <p>{ this.props.network.wwanIp }</p>
           </div>
-
+          <div className="system-reporting-row">
+            <p>Last Update:</p>
+            <p>{ moment(parseInt(this.props.network.timestamp) * 1000).fromNow() }</p>
+          </div>
         </div>
       )
     }
@@ -59,7 +63,7 @@ class System extends Component {
     switch (this.props.currentView) {
       case 0:
         return (
-          <div>
+          <div className="system-overview">
             { this.returnNetworkStatus() }
             { this.returnSupervisorList() }
           </div>

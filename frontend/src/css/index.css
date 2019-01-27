@@ -119,6 +119,17 @@ a {
   font-size: .9rem;
 }
 
+.system-overview {
+  display: flex;
+  flex-direction: column;
+ /* justify-content:  */
+  margin-top: 1rem;
+}
+
+.system-overview > div {
+  margin-bottom: 2rem;
+}
+
 .system-reporting-row {
   display: flex;
   align-items: center;
