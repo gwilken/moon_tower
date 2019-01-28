@@ -31,7 +31,8 @@ class Solar extends Component {
                 <Bar 
                   scores={ this.props.data.slice(window).map(elem => parseInt(elem.current).toFixed(0 )) } 
                   timestamps={  this.props.data.slice(window).map(elem => parseInt(elem.timestamp) ) } 
-                  color={ this.props.color } />
+                  color={ this.props.color }
+                  height='full' />
           </div>
         )
       
@@ -49,7 +50,8 @@ class Solar extends Component {
                   <Bar 
                     scores={ this.props.data.map(elem => parseFloat(elem.voltage) * 10 ) } 
                     timestamps={  this.props.data.map(elem => parseInt(elem.timestamp) ) } 
-                    color={ this.props.color } />
+                    color={ this.props.color } 
+                    height='full'/>
             </div>
           )
 
@@ -59,10 +61,22 @@ class Solar extends Component {
               <Header
                 title="Solar" 
                 color={ this.props.color } 
-                value={ this.state.value } 
-                unit="V" 
+                value={ this.props.data.length > 1 ? parseFloat(this.props.data[this.props.data.length - 1].current).toFixed(0) : null } 
+                unit="mA" 
                 onClick={ this.props.onClick }
                 />
+                
+                <Bar 
+                  scores={ this.props.data.slice(window).map(elem => parseInt(elem.current).toFixed(0 )) } 
+                  timestamps={  this.props.data.slice(window).map(elem => parseInt(elem.timestamp) ) } 
+                  color={ this.props.color } 
+                  height='half'/>
+
+                <Bar 
+                  scores={ this.props.data.map(elem => parseFloat(elem.voltage) * 10 ) } 
+                  timestamps={  this.props.data.map(elem => parseInt(elem.timestamp) ) } 
+                  color={ this.props.color } 
+                  height='half'/>
             </div>
           )
           

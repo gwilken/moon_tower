@@ -43,7 +43,7 @@ class System extends Component {
         <div>
           <h3>Network</h3>
           <div className="system-reporting-row">
-            <p>Cellular Up:</p>
+            <p>Internet Accessable:</p>
             <p>{ this.props.network.connected }</p>
           </div>
           <div className="system-reporting-row">

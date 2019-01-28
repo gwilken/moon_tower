@@ -47,7 +47,18 @@ class ReduxBarChart extends Component {
     let screenWidth = typeof this.state.windowWidth != 'undefined' ? this.state.windowWidth : window.innerWidth
     let screenHeight = typeof this.state.windowHeight != 'undefined' ? this.state.windowHeight : window.innerHeight
     let width = screenWidth / 2
-    let height = (screenHeight / 2) - 60
+    let height
+    
+    if (this.props.height === 'full') {
+      height = (screenHeight / 2) - 87
+    }
+    
+    
+    if (this.props.height === 'half') {
+      height = ((screenHeight / 2) - 90) / 2
+    }
+
+    
     let maxValue = Math.max(...scores)
     let minValue = Math.min(...scores)
 
@@ -60,9 +71,9 @@ class ReduxBarChart extends Component {
 
     let titleContainer = {
       x: 0,
-      y: chartContainer.height - 20,
+      y: chartContainer.height - 5,
       width: width,
-      height: 35
+      height: 15
     }
 
     let barsContainer = {

@@ -49,6 +49,7 @@ a {
   height: 100%;
   padding: 7px;
   box-sizing: border-box;
+  overflow: scroll;
 }
 
 .panel-header {
@@ -57,6 +58,7 @@ a {
   align-items: baseline;
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .panel-title {
@@ -98,7 +100,6 @@ a {
 .gps-info-container {
   display: flex;
   flex-direction: column;
-  height: 90%;
   justify-content: space-evenly;
   margin-top: 8px;
 }
@@ -107,6 +108,7 @@ a {
   display: flex;
   width: 100%;
   flex-direction: column;
+  margin-bottom: .5rem;
 }
 
 .gps-info-label {
@@ -116,7 +118,7 @@ a {
 
 .gps-info-data {
   color: white;
-  font-size: .9rem;
+  font-size: 1.2rem;
 }
 
 .system-overview {

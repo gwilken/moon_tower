@@ -30,7 +30,8 @@ class House extends Component {
               <Bar 
                 scores={ this.props.data.slice(window).map(elem => parseInt(elem.current).toFixed(0 )) } 
                 timestamps={  this.props.data.slice(window).map(elem => parseInt(elem.timestamp) ) } 
-                color={ this.props.color } />
+                color={ this.props.color } 
+                height='full' />
           </div>
         )
       
@@ -45,9 +46,10 @@ class House extends Component {
                 onClick={ this.props.onClick } />
                 
                 <Bar 
-                  scores={ this.props.data.slice(window).map(elem => parseFloat(elem.voltage) * 10 ) } 
-                  timestamps={  this.props.data.slice(window).map(elem => parseInt(elem.timestamp) ) } 
-                  color={ this.props.color } />
+                  scores={ this.props.data.slice(window).map(elem => parseFloat(elem.voltage) * 10 ) }
+                  timestamps={  this.props.data.slice(window).map(elem => parseInt(elem.timestamp) ) }
+                  color={ this.props.color } 
+                  height='full' />
             </div>
           )
 
@@ -60,6 +62,20 @@ class House extends Component {
                 value={ this.state.value } 
                 unit="V" 
                 onClick={ this.props.onClick } />
+
+              <Bar 
+                scores={ this.props.data.slice(window).map(elem => parseFloat(elem.current) ) } 
+                timestamps={  this.props.data.slice(window).map(elem => parseInt(elem.timestamp) ) } 
+                color={ this.props.color } 
+                height='half'
+                />
+
+              <Bar 
+                scores={ this.props.data.slice(window).map(elem => parseFloat(elem.voltage) * 10 ) } 
+                timestamps={  this.props.data.slice(window).map(elem => parseInt(elem.timestamp) ) } 
+                color={ this.props.color } 
+                height='half'
+                /> 
             </div>
           )
           
