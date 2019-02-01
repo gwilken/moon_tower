@@ -4,13 +4,7 @@ const Header = (props) => {
   return (
     <div className="panel-header">
       <div className="panel-title">
-        { props.title }
-    
-        <div 
-          className="view-button" 
-          onClick={ () => props.onClick() }>
-          &#8759;
-        </div>     
+        { props.title } 
       </div>
       <div className="panel-rt-container">
         <div className="panel-rt">{ props.value }</div>

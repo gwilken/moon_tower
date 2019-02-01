@@ -122,9 +122,9 @@ class GPS extends Component {
     let currentView = this.returnCurrentView()
 
       return (
-        <div>
+        <div onClick={ this.props.onClick }>
            <div className="panel">
-            <Header title="GPS" color="cyan" onClick={ this.props.onClick }/>
+            <Header title="GPS" color="cyan" />
             { currentView }
           </div>
         </div>

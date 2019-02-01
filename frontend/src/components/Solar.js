@@ -8,8 +8,6 @@ class Solar extends Component {
       super()
 
       this.state = {
-        value: 240,
-        unit: 'mA'
       }
   }
   
@@ -17,6 +15,7 @@ class Solar extends Component {
     let window = this.props.window * -1
 
     switch (this.props.currentView) {
+      //current view
       case 0:
         return (
           <div className="panel">
@@ -24,8 +23,7 @@ class Solar extends Component {
                 title="Solar" 
                 color={ this.props.color } 
                 value={ this.props.data.length > 1 ? parseFloat(this.props.data[this.props.data.length - 1].current).toFixed(0) : null } 
-                unit="mA" 
-                onClick={ this.props.onClick }
+                unit="mA"
                 />
                 
                 <Bar 
@@ -37,6 +35,7 @@ class Solar extends Component {
         )
       
         case 1:
+        //voltage view
           return (
             <div className="panel">
                 <Header
@@ -44,7 +43,7 @@ class Solar extends Component {
                   color={ this.props.color } 
                   value={ this.props.data.length > 1 ? parseFloat(this.props.data[this.props.data.length - 1].voltage).toFixed(2) : null } 
                   unit="V" 
-                  onClick={ this.props.onClick }
+        
                   />
                   
                   <Bar 
@@ -56,15 +55,15 @@ class Solar extends Component {
           )
 
         case 2:
+        //current & voltage view
           return (
             <div className="panel">
               <Header
                 title="Solar" 
                 color={ this.props.color } 
-                value={ this.props.data.length > 1 ? parseFloat(this.props.data[this.props.data.length - 1].current).toFixed(0) : null } 
-                unit="mA" 
-                onClick={ this.props.onClick }
-                />
+                value={ this.props.data.length > 1 
+                  ? `${parseFloat(this.props.data[this.props.data.length - 1].current).toFixed(0)}mA ${parseFloat(this.props.data[this.props.data.length - 1].voltage).toFixed(0)}V`
+                  : null } />
                 
                 <Bar 
                   scores={ this.props.data.slice(window).map(elem => parseInt(elem.current).toFixed(0 )) } 
@@ -86,9 +85,9 @@ class Solar extends Component {
               <Header
                 title="Solar" 
                 color={ this.props.color } 
-                value="Settings"
+                value=""
                 unit="" 
-                onClick={ this.props.onClick }
+                 
                 />
             </div>
           )
@@ -102,7 +101,7 @@ class Solar extends Component {
       let currentView = this.returnCurrentView()
 
       return (
-        <div>
+        <div onClick={ this.props.onClick }>
           { currentView }
         </div>
       )

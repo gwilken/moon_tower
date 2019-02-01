@@ -52,13 +52,11 @@ class ReduxBarChart extends Component {
     if (this.props.height === 'full') {
       height = (screenHeight / 2) - 87
     }
-    
-    
+        
     if (this.props.height === 'half') {
-      height = ((screenHeight / 2) - 90) / 2
+      height = ((screenHeight / 2) - 88) / 2
     }
 
-    
     let maxValue = Math.max(...scores)
     let minValue = Math.min(...scores)
 
@@ -71,7 +69,7 @@ class ReduxBarChart extends Component {
 
     let titleContainer = {
       x: 0,
-      y: chartContainer.height - 5,
+      y: chartContainer.height - 3,
       width: width,
       height: 15
     }
@@ -112,7 +110,7 @@ class ReduxBarChart extends Component {
         )}
     )
 
-    let displayTime = moment(timestamps[0] * 1000).fromNow()
+    let displayTime = moment.duration( (timestamps[timestamps.length - 1] * 1000) - (timestamps[0] * 1000)).humanize()
 
     let title = 
       <g>
