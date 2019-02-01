@@ -49,7 +49,7 @@ a {
   height: 100%;
   padding: 7px;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .panel-header {
@@ -96,6 +96,10 @@ a {
 
 .mapboxgl-map {
   margin-top: 10px;
+}
+
+.gps-container .panel {
+  overflow: scroll;
 }
 
 .gps-info-container {

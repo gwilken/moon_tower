@@ -66,6 +66,7 @@ class GPS extends Component {
 
   returnCurrentView = () => {
     switch (this.props.currentView) {
+      //follow view
       case 0:
         return (
           <Map
@@ -122,7 +123,7 @@ class GPS extends Component {
     let currentView = this.returnCurrentView()
 
       return (
-        <div onClick={ this.props.onClick }>
+        <div className="gps-container" onClick={ this.props.onClick }>
            <div className="panel">
             <Header title="GPS" color="cyan" />
             { currentView }

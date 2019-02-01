@@ -50,11 +50,11 @@ class ReduxBarChart extends Component {
     let height
     
     if (this.props.height === 'full') {
-      height = (screenHeight / 2) - 87
+      height = (screenHeight / 2) - 77
     }
         
     if (this.props.height === 'half') {
-      height = ((screenHeight / 2) - 88) / 2
+      height = ((screenHeight / 2) - 78) / 2
     }
 
     let maxValue = Math.max(...scores)
@@ -69,9 +69,9 @@ class ReduxBarChart extends Component {
 
     let titleContainer = {
       x: 0,
-      y: chartContainer.height - 3,
+      y: chartContainer.height,
       width: width,
-      height: 15
+      height: 10
     }
 
     let barsContainer = {
@@ -113,7 +113,7 @@ class ReduxBarChart extends Component {
     let displayTime = moment.duration( (timestamps[timestamps.length - 1] * 1000) - (timestamps[0] * 1000)).humanize()
 
     let title = 
-      <g>
+    ( <g>
         <text 
           x={ titleContainer.width / 2 } 
           y={ titleContainer.y + 1 } 
@@ -123,7 +123,7 @@ class ReduxBarChart extends Component {
           fontSize="12">
           { displayTime }
         </text>
-      </g>
+      </g> )
 
      return (
         <svg height={ height } width="100%" className="chart-svg" viewBox={"0 0 " + width + " " + height} preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">

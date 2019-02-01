@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Header from './Header'
 import Bar from './BarChart'
-
+import Line from './LineChart'
 
 class Solar extends Component {
   constructor(props) {
@@ -23,8 +23,7 @@ class Solar extends Component {
                 title="Solar" 
                 color={ this.props.color } 
                 value={ this.props.data.length > 1 ? parseFloat(this.props.data[this.props.data.length - 1].current).toFixed(0) : null } 
-                unit="mA"
-                />
+                unit="mA" />
                 
                 <Bar 
                   scores={ this.props.data.slice(window).map(elem => parseInt(elem.current).toFixed(0 )) } 
@@ -42,13 +41,11 @@ class Solar extends Component {
                   title="Solar" 
                   color={ this.props.color } 
                   value={ this.props.data.length > 1 ? parseFloat(this.props.data[this.props.data.length - 1].voltage).toFixed(2) : null } 
-                  unit="V" 
-        
-                  />
+                  unit="V" />
                   
                   <Bar 
-                    scores={ this.props.data.map(elem => parseFloat(elem.voltage) * 10 ) } 
-                    timestamps={  this.props.data.map(elem => parseInt(elem.timestamp) ) } 
+                    scores={ this.props.data.slice(window).map(elem => parseInt(elem.voltage * 100).toFixed(0 )) } 
+                    timestamps={  this.props.data.slice(window).map(elem => parseInt(elem.timestamp) ) } 
                     color={ this.props.color } 
                     height='full'/>
             </div>
@@ -72,7 +69,7 @@ class Solar extends Component {
                   height='half'/>
 
                 <Bar 
-                  scores={ this.props.data.map(elem => parseFloat(elem.voltage) * 10 ) } 
+                  scores={ this.props.data.slice(window).map(elem => parseInt(elem.voltage * 100).toFixed(0 )) } 
                   timestamps={  this.props.data.map(elem => parseInt(elem.timestamp) ) } 
                   color={ this.props.color } 
                   height='half'/>
@@ -80,15 +77,25 @@ class Solar extends Component {
           )
           
         case 3:
+        //compare view
           return (
             <div className="panel">
               <Header
-                title="Solar" 
-                color={ this.props.color } 
-                value=""
-                unit="" 
-                 
-                />
+                title= "Solar" 
+                color= { this.props.color } 
+                value= "Compare" />
+
+                <Line 
+                  scores={[
+                    this.props.data.map(elem => parseInt(elem.current).toFixed(0 )), 
+                    this.props.houseData.map(elem => parseInt(elem.current).toFixed(0 )) 
+                  ]} 
+                  timestamps={  this.props.data.map(elem => parseInt(elem.timestamp) ) }
+                  color={[
+                    "rgba(255, 255, 0, .9)",
+                    "rgba(255, 0, 255, .9)"
+                  ]}
+                  height="full" />
             </div>
           )
 

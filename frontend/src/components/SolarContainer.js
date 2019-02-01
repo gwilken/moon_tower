@@ -6,7 +6,10 @@ import store from '../js/store'
 import axios from 'axios'
 
 const mapStateToProps = state => {
-  return { data: state.solar }
+  return { 
+    solarData: state.solar,
+    houseData: state.house 
+  }
 }
 
 
@@ -48,7 +51,8 @@ handleClick = () => {
 render () {
     return ( 
       <Solar
-        data={ this.props.data} 
+        data={ this.props.solarData }
+        houseData={ this.props.houseData } 
         currentView={ this.state.currentView } 
         window={ this.state.window }
         mostRecentData={ this.state.mostRecentData } 

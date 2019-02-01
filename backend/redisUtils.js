@@ -8,6 +8,10 @@ const asyncHgetall = promisify(redisClient.hgetall).bind(redisClient)
 // const redisGet = promisify(redisClient.get).bind(redis)
 //let test = await redisLrange(req.params.key, req.params.start, req.params.end)
 
+const getHash = async (hashKey) => {
+    let hash = await asyncHget()
+}
+
 const recordEvent = async (event) => {
     let timestamp = Date.now()
 
@@ -34,7 +38,7 @@ const getZrevrange = (key, window) => {
     })
 }
 
-const getFullEvent = (type, min = -30, max = -1) => {
+const getHashsFromSet = (type, min = -30, max = -1) => {
     return new Promise( async (resolve, reject) => {
         let list = await zrange(type, min, max)
 
@@ -75,4 +79,4 @@ const getEventFieldAndTimestamp = (type, field, min = 0, max = 100) => {
     })
 }
 
-module.exports = { redisClient, getZrevrange, recordEvent, getFullEvent, getEventField, getEventFieldAndTimestamp }
+module.exports = { redisClient, getZrevrange, recordEvent, getHashsFromSet, getEventField, getEventFieldAndTimestamp }
