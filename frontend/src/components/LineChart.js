@@ -19,11 +19,8 @@ class ReduxLineChart extends React.Component {
   }
 
   svgPath = (points, command) => {
-    // build the d attributes by looping over the points
     const d = points.reduce((acc, point, i, a) => i === 0
-      // if first point
       ? `M ${point[0]},${point[1]}`
-      // else
       : `${acc} ${command(point, i, a)}`
     , '')
     return d
@@ -40,28 +37,19 @@ class ReduxLineChart extends React.Component {
   }
 
   controlPoint = (current, previous, next, reverse) => {
-    // When 'current' is the first or last point of the array
-    // 'previous' or 'next' don't exist.
-    // Replace with 'current'
     const p = previous || current
     const n = next || current
-    // The smoothing ratio
     const smoothing = 0.2
-    // Properties of the opposed-line
     const o = this.line(p, n)
-    // If is end-control-point, add PI to the angle to go backward
     const angle = o.angle + (reverse ? Math.PI : 0)
     const length = o.length * smoothing
-    // The control point position is relative to the current point
     const x = current[0] + Math.cos(angle) * length
     const y = current[1] + Math.sin(angle) * length
     return [x, y]
   }
 
   bezierCommand = (point, i, a) => {
-    // start control point
     const [cpsX, cpsY] = this.controlPoint(a[i - 1], a[i - 2], point)
-    // end control point
     const [cpeX, cpeY] = this.controlPoint(point, a[i - 1], a[i + 1], true)
     return `C ${cpsX},${cpsY} ${cpeX},${cpeY} ${point[0]},${point[1]}`
   }
@@ -80,33 +68,30 @@ class ReduxLineChart extends React.Component {
       height = ((screenHeight / 2) - 78) / 2
     }
 
-      let chartContainer = {
-        x: 0,
-        y: 0,
-        width: width,
-        height: height
-      }
-  
-      let titleContainer = {
-        x: 0,
-        y: chartContainer.height,
-        width: width,
-        height: 10
-      }
-  
-      let lineContainer = {
-        x: 0,
-        y: 0,
-        width: chartContainer.width,
-        height: chartContainer.height - titleContainer.height
-      }
-  
-      let minScore = Math.min(...scoresArr[0].concat(scoresArr[1]))
-      console.log('minscore:', minScore)
-      let maxScore = Math.max(...scoresArr[0].concat(scoresArr[1]))
-      console.log('maxscore:', maxScore)
-  
+    let chartContainer = {
+      x: 0,
+      y: 0,
+      width: width,
+      height: height
+    }
 
+    let titleContainer = {
+      x: 0,
+      y: chartContainer.height,
+      width: width,
+      height: 10
+    }
+
+    let lineContainer = {
+      x: 0,
+      y: 0,
+      width: chartContainer.width,
+      height: chartContainer.height - titleContainer.height
+    }
+
+    let minScore = Math.min(...scoresArr[0].concat(scoresArr[1]))
+    let maxScore = Math.max(...scoresArr[0].concat(scoresArr[1]))
+  
     let paths = scoresArr.map((scores, index) => {
       let points = scores.map((score, index) => {
         let y = lineContainer.height - mapRange(score, minScore - 10, maxScore + 10, 0, lineContainer.height)
@@ -125,7 +110,7 @@ class ReduxLineChart extends React.Component {
       )
     })
 
-    let displayTime = moment.duration( (timestamps[timestamps.length - 1] * 1000) - (timestamps[0] * 1000)).humanize()
+    let displayTime = moment(timestamps[0] * 1000).fromNow(true)
 
     let title = 
     ( <g>
@@ -136,7 +121,7 @@ class ReduxLineChart extends React.Component {
           alignmentBaseline="middle"
           fill="silver" 
           fontSize="12">
-          { displayTime }
+          last { displayTime }
         </text>
       </g> )
 

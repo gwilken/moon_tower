@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Header from './Header'
 import Bar from './BarChart'
-import Line from './LineChart'
+import CompareChart from './CompareChart'
 
 class Solar extends Component {
   constructor(props) {
@@ -79,24 +79,7 @@ class Solar extends Component {
         case 3:
         //compare view
           return (
-            <div className="panel">
-              <Header
-                title= "Solar" 
-                color= { this.props.color } 
-                value= "Compare" />
-
-                <Line 
-                  scores={[
-                    this.props.data.map(elem => parseInt(elem.current).toFixed(0 )), 
-                    this.props.houseData.map(elem => parseInt(elem.current).toFixed(0 )) 
-                  ]} 
-                  timestamps={  this.props.data.map(elem => parseInt(elem.timestamp) ) }
-                  color={[
-                    "rgba(255, 255, 0, .9)",
-                    "rgba(255, 0, 255, .9)"
-                  ]}
-                  height="full" />
-            </div>
+            <CompareChart />
           )
 
         default:
