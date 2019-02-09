@@ -10,6 +10,7 @@ const hgetall = promisify(getter.hgetall).bind(getter)
 subscriber.on('ready', () => {
 subscriber.subscribe("__keyevent@0__:zadd")
 subscriber.subscribe("__keyevent@0__:expired")
+subscriber.subscribe("__keyevent@0__:hmset")
 
   subscriber.on("message", async (channel, key) => {
     console.log(channel, key)
