@@ -15,7 +15,8 @@ subscriber.subscribe("__keyevent@0__:expired")
 subscriber.subscribe("__keyspace@0__:supervisor")
 
   subscriber.on("message", async (channel, key) => {
-    console.log(channel, key)
+
+//    console.log(channel, key)
    
     if (channel === '__keyevent@0__:zadd') {
    //   console.log('zadd', key)
@@ -33,9 +34,24 @@ subscriber.subscribe("__keyspace@0__:supervisor")
     }
 
     else if (channel === '__keyevent@0__:expired') {
- //     console.log('expired', key)
-    } else {
+      wss.clients.forEach(client => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send(JSON.stringify({
+              type: 'expire',
+              key: key
+             }));
+        }
+      });
+
+    } else if (channel === '__keyspace@0__:supervisor' && key == 'hset') {
    //   console.log(channel, key)
+        let hash = await hgetall(hashKey)
+
+        wss.clients.forEach(client => {
+            if (client.readyState === WebSocket.OPEN) {
+                client.send(JSON.stringify(hash));
+            }
+        });
     }
   })
 });

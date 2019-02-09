@@ -8,6 +8,8 @@ const createWebSocket = () => {
         try {
             let data = JSON.parse(event.data)
     
+            console.log(data)
+
             if (data.parent) {
                 if(data.parent === 'system') {
                     console.log(data)
