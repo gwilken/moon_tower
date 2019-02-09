@@ -12,9 +12,10 @@ subscriber.subscribe("__keyevent@0__:zadd")
 subscriber.subscribe("__keyevent@0__:expired")
 
   subscriber.on("message", async (channel, key) => {
-    
+    console.log(channel, key)
+   
     if (channel === '__keyevent@0__:zadd') {
-      console.log('zadd', key)
+   //   console.log('zadd', key)
       let hashKey = await zrevrange(key, 0, 0)
 
       setTimeout(async () => {
@@ -29,9 +30,9 @@ subscriber.subscribe("__keyevent@0__:expired")
     }
 
     else if (channel === '__keyevent@0__:expired') {
-      console.log('expired', key)
+ //     console.log('expired', key)
     } else {
-      console.log(channel, key)
+   //   console.log(channel, key)
     }
   })
 });
