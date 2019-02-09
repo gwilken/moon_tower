@@ -9,14 +9,16 @@ const hgetall = promisify(getter.hgetall).bind(getter)
 
 
 subscriber.on('ready', () => {
-  subscriber.subscribe("__keyevent@0__:zadd")
-  //subscriber.subscribe("__keyevent@0__:expire")
+subscriber.subscribe("__keyevent@0__:zadd")
+subscriber.subscribe("__keyevent@0__:expire")
 
   subscriber.on("message", async (channel, key) => {
     console.log(channel)
-    let hashKey = await zrevrange(key, 0, 0)
 
-    setTimeout(async () => {
+    if (channel === '__keyevent@0__:zadd') {
+      let hashKey = await zrevrange(key, 0, 0)
+
+      setTimeout(async () => {
         let hash = await hgetall(hashKey)
 
         wss.clients.forEach(client => {
@@ -24,7 +26,12 @@ subscriber.on('ready', () => {
                 client.send(JSON.stringify(hash));
             }
         });
-    }, 250)
+      }, 250)
+    }
+
+    else if (channel === '__keyevent@0__:expire') {
+      console.log(key)
+    }
   })
 });
 
@@ -32,11 +39,11 @@ const wss = new WebSocket.Server({ port: config.websocket.port });
 console.log('[ WEBSOCKET ] - Ready.')
 
 wss.on('connection', function connection(ws) {
-    console.log('client websocket connected')
+  console.log('client websocket connected')
 
-    ws.on('message', function incoming(packet) {
-        console.log(packet)
-    })
+  ws.on('message', function incoming(packet) {
+      console.log(packet)
+  })
 })
 
 module.exports = wss
