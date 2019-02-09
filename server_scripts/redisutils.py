@@ -38,7 +38,7 @@ def set_hash(hashname, values, expires):
 
     try:
         r.hmset(hashname, values)
-        r.expire(hashname, 10)
+        r.expire(hashname, expires)
 
     except Exception as e:
         print('Error setting Redis hash:', e)
