@@ -45,7 +45,7 @@ subscriber.subscribe("__keyspace@0__:supervisor")
 
     } else if (channel === '__keyspace@0__:supervisor' && key == 'hset') {
    //   console.log(channel, key)
-        let hash = await hgetall(key)
+        let hash = await hgetall('supervisor')
 
         wss.clients.forEach(client => {
             if (client.readyState === WebSocket.OPEN) {
