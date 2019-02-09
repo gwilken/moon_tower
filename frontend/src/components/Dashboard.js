@@ -3,7 +3,8 @@ import React from 'react'
 const style = {
   display: 'grid',
   gridTemplateRows: '[row-1] 50% [row-2] 50%' ,
-  gridTemplateColumns: '[col-1] 50% [col-2] 50%',
+ // gridTemplateColumns: '[col-1] 50% [col-2] 50%',
+  gridTemplateColumns: '[col-1] 100%',
   height: '100vh'
 }
 

@@ -1,7 +1,6 @@
 import { pushData, updateKey } from '../js/actions.js'
 import store from '../js/store'
 
-
 const createWebSocket = () => {
     let ws = new WebSocket('ws://192.168.2.3:8080')
 
@@ -12,15 +11,12 @@ const createWebSocket = () => {
             if (data.parent) {
                 if(data.parent === 'system') {
                     console.log(data)
+
                     store.dispatch (updateKey(data, data.type) )
                 } else {
                     store.dispatch( pushData(data, data.parent) )
                 }
             }
-    
-            //console.log(data)
-    
-            //TODO: dispatch event to store
         } catch (err) {
             console.log(err)
         }

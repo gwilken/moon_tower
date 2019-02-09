@@ -2,6 +2,9 @@ const config = {
   webserver: {
     port: 4000
   },
+  websocket: {
+    port: 8080,
+  },
   db: {
     name: '',
     collection: '',

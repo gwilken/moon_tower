@@ -1,10 +1,10 @@
 const express = require('express')
 const app = express()
-const websocket = require('./websocket')
+require('./websocket')
 const routes = require('./routes')
 const config = require('./config')
 
-//app.use(express.static('../frontend/public'))
+//app.use(express.static('../frontend/build'))
 app.use('/api', routes)
 
 app.listen(config.webserver.port, function() {

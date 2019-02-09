@@ -51,7 +51,7 @@ class CompareChart extends Component {
           timestamps={  this.state.house.map(elem => parseInt(elem.timestamp) ) }
           color={[
             "rgba(255, 255, 0, .9)",
-            "rgba(255, 0, 255, .9)"
+            "cyan"
           ]}
           height="full" />
       }

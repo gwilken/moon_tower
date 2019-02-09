@@ -57,7 +57,7 @@ class ReduxLineChart extends React.Component {
   chart = (scoresArr, timestamps) => {
     let screenWidth = typeof this.props.windowWidth != 'undefined' ? this.props.windowWidth : window.innerWidth
     let screenHeight = typeof this.props.windowHeight != 'undefined' ? this.props.windowHeight : window.innerHeight
-    let width = screenWidth / 2
+    let width = screenWidth
     let height
     
     if (this.props.height === 'full') {
@@ -65,7 +65,7 @@ class ReduxLineChart extends React.Component {
     }
         
     if (this.props.height === 'half') {
-      height = ((screenHeight / 2) - 78) / 2
+      height = ((screenHeight / 2) - 77) / 2
     }
 
     let chartContainer = {
@@ -121,7 +121,7 @@ class ReduxLineChart extends React.Component {
           alignmentBaseline="middle"
           fill="silver" 
           fontSize="12">
-          last { displayTime }
+        { displayTime }
         </text>
       </g> )
 

@@ -9,23 +9,16 @@ const hgetall = promisify(getter.hgetall).bind(getter)
 
 
 subscriber.on('ready', () => {
-  console.log('Subscriber Ready.');
-
   subscriber.subscribe("__keyevent@0__:zadd")
 
   subscriber.on("message", async (channel, key) => {
-    console.log('msg:', key)
-
     let hashKey = await zrevrange(key, 0, 0)
-    //console.log(hashKey)
-    
+
     setTimeout(async () => {
         let hash = await hgetall(hashKey)
-        console.log(hash)
 
         wss.clients.forEach(client => {
             if (client.readyState === WebSocket.OPEN) {
-                console.log('sending to clients:', hash)
                 client.send(JSON.stringify(hash));
             }
         });
@@ -33,7 +26,8 @@ subscriber.on('ready', () => {
   })
 });
 
-const wss = new WebSocket.Server({ port: 8080 });
+const wss = new WebSocket.Server({ port: config.websocket.port });
+console.log('[ WEBSOCKET ] - Ready.')
 
 wss.on('connection', function connection(ws) {
     console.log('client websocket connected')

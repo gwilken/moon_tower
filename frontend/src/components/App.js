@@ -15,8 +15,8 @@ const App = () => {
       <Dashboard>
         <SolarContainer />
         <HouseContainer />
-        <GPSContainer />
-        <SystemContainer />
+        {/* <GPSContainer />
+        <SystemContainer /> */}
       </Dashboard>
     </div>
   );

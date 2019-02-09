@@ -18,7 +18,7 @@ constructor(props) {
     this.state = {
         currentView: 0,
         window: 30,
-        color: 'magenta',
+        color: 'cyan',
         mostRecentData: null
     }
 }
