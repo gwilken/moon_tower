@@ -26,6 +26,5 @@ while True:
     "wwanIp": get_ip_address('wwan0') 
   }
   
-  add_hash_update_set('network', status, 10 )
-  #add_system_hash('network', status)
+  set_hash('network', status, 10)
   time.sleep(2)

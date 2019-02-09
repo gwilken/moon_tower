@@ -30,19 +30,18 @@ def add_hash_update_set(set, values, expire):
         print('Error setting Redis keys:', e)
 
 #update system set and create hash
-# def add_system_hash(hashname, values):
-#     timestamp = int(time.time())
-#     values['timestamp'] = timestamp
-#     values['parent'] = 'system'
-#     values['type'] = hashname
+def set_hash(hashname, values, expires):
+    timestamp = int(time.time())
+    values['timestamp'] = timestamp
+    values['parent'] = 'system'
+    values['type'] = hashname
 
-#     try:
-#         r.hmset(hashname + '-hash', values)
-#         r.expire(hashname + '-hash', 10)
-#         r.zadd('system-set', hashname + '-hash', timestamp)
+    try:
+        r.hmset(hashname, values)
+        r.expire(hashname, 10)
 
-#     except Exception as e:
-#         print('Error setting Redis keys:', e)
+    except Exception as e:
+        print('Error setting Redis hash:', e)
 
 
 #deletes all keys of a sorted set before now
