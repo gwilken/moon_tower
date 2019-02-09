@@ -29,8 +29,8 @@ subscriber.subscribe("__keyevent@0__:expire")
       }, 250)
     }
 
-    else if (channel === '__keyevent@0__:expire') {
-      console.log(key)
+    else {
+      console.log(channel, key)
     }
   })
 });
