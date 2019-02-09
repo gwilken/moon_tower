@@ -14,7 +14,7 @@ def connect_redis():
 
 
 #creates a hash map of values and adds key of that map to a sorted set of timestamps
-def add_hash_update_set(set, values):
+def add_hash_update_set(set, values, expire):
     print values
     timestamp = int(time.time())
     values['timestamp'] = timestamp
@@ -24,25 +24,25 @@ def add_hash_update_set(set, values):
     try:
         r.zadd(set + '-set', hashkey, timestamp )
         r.hmset(hashkey, values)
-        r.expire(hashkey, 86400)
+        r.expire(hashkey, expire)
 
     except Exception as e:
         print('Error setting Redis keys:', e)
 
 #update system set and create hash
-def add_system_hash(hashname, values):
-    timestamp = int(time.time())
-    values['timestamp'] = timestamp
-    values['parent'] = 'system'
-    values['type'] = hashname
+# def add_system_hash(hashname, values):
+#     timestamp = int(time.time())
+#     values['timestamp'] = timestamp
+#     values['parent'] = 'system'
+#     values['type'] = hashname
 
-    try:
-        r.hmset(hashname + '-hash', values)
-        r.expire(hashname + '-hash', 10)
-        r.zadd('system-set', hashname + '-hash', timestamp)
+#     try:
+#         r.hmset(hashname + '-hash', values)
+#         r.expire(hashname + '-hash', 10)
+#         r.zadd('system-set', hashname + '-hash', timestamp)
 
-    except Exception as e:
-        print('Error setting Redis keys:', e)
+#     except Exception as e:
+#         print('Error setting Redis keys:', e)
 
 
 #deletes all keys of a sorted set before now

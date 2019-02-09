@@ -32,5 +32,5 @@ def read_house_data():
         print 'Error reading house ina219 data:', e
 
 while True:
-    add_hash_update_set( 'house', read_house_data() )
+    add_hash_update_set('house', read_house_data(), 86400 )
     time.sleep(POLLING_FREQ)

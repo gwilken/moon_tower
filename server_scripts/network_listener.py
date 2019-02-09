@@ -24,7 +24,8 @@ while True:
   status = { 
     "connected": is_connected(),
     "wwanIp": get_ip_address('wwan0') 
-    }
+  }
   
-  add_system_hash('network', status)
+  add_hash_update_set('network', status, 10 )
+  #add_system_hash('network', status)
   time.sleep(2)
