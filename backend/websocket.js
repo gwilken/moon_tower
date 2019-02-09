@@ -11,7 +11,7 @@ subscriber.on('ready', () => {
 //subscriber.subscribe("__keyevent@0__:*")
 subscriber.subscribe("__keyevent@0__:zadd")
 subscriber.subscribe("__keyevent@0__:expired")
-subscriber.subscribe("__keyevent@0__:set")
+subscriber.subscribe("__keyevent@0__:hset")
 
   subscriber.on("message", async (channel, key) => {
     console.log(channel, key)
