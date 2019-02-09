@@ -9,13 +9,11 @@ const hgetall = promisify(getter.hgetall).bind(getter)
 
 
 subscriber.on('ready', () => {
-  //subscriber.subscribe("__keyevent@0__:zadd")
-  //subscriber.subscribe("__keyevent@0__:expire")
-subscriber.subscribe("__key*__:*")
+subscriber.subscribe("__keyevent@0__:zadd")
+subscriber.subscribe("__keyevent@0__:expired")
 
   subscriber.on("message", async (channel, key) => {
-    console.log(channel)
-
+    console.log('add', key)
     if (channel === '__keyevent@0__:zadd') {
       let hashKey = await zrevrange(key, 0, 0)
 
@@ -30,8 +28,8 @@ subscriber.subscribe("__key*__:*")
       }, 250)
     }
 
-    else {
-      console.log(channel, key)
+    else if (channel === '__keyevent@0__:expired') {
+      console.log('expired', key)
     }
   })
 });
