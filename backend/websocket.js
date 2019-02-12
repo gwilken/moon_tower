@@ -38,8 +38,9 @@ subscriber.on("message", async (channel, key) => {
              }));
         }
       });
-
-    } else if (channel === '__keyspace@0__:supervisor' && key == 'hset') {
+    } 
+    
+    else if (channel === '__keyspace@0__:supervisor' && key === 'hset') {
         let hash = await hgetall('supervisor')
 
         wss.clients.forEach(client => {
@@ -47,7 +48,9 @@ subscriber.on("message", async (channel, key) => {
                 client.send(JSON.stringify(hash));
             }
         });
-    } else if (channel === '__keyspace@0__:network' && key == 'hset') {
+    } 
+    
+    else if (channel === '__keyspace@0__:network' && key === 'hset') {
         let hash = await hgetall('network')
 
         wss.clients.forEach(client => {
