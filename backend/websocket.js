@@ -8,14 +8,16 @@ const zrevrange = promisify(getter.zrevrange).bind(getter)
 const hgetall = promisify(getter.hgetall).bind(getter)
 
 subscriber.on('ready', () => {
-//subscriber.subscribe("__keyevent@0__:*")
 subscriber.subscribe("__keyevent@0__:zadd")
 subscriber.subscribe("__keyevent@0__:expired")
-//subscriber.subscribe("__keyevent@0__:hset")
 subscriber.subscribe("__keyspace@0__:supervisor")
+subscriber.subscribe("__keyspace@0__:network")
 
   subscriber.on("message", async (channel, key) => {
 
+    let type = channel.split('@')[0]
+    console.log(type)
+    
 //    console.log(channel, key)
    
     if (channel === '__keyevent@0__:zadd') {

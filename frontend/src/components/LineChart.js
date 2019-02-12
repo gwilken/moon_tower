@@ -100,13 +100,16 @@ class ReduxLineChart extends React.Component {
       })
   
       let path = this.svgPath(points, this.bezierCommand)
-      path += `V ${lineContainer.height} H ${lineContainer.x} V ${points[0][1]} Z` 
+     // path += `V ${lineContainer.height} H ${lineContainer.x} V ${points[0][1]} Z` 
 
       return (
         <path
           d={ path }
           className="comp-path"
-          fill={ this.props.color[index] } />
+          stroke={ this.props.color[index] }
+          strokeWidth="2"
+          //fill={ this.props.color[index] }
+           />
       )
     })
 
