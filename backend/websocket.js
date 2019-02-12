@@ -15,7 +15,7 @@ subscriber.subscribe("__keyspace@0__:network")
 
 subscriber.on("message", async (channel, key) => {
 
-    if (channel === '__keyevent@0__:zadd') {
+if (channel === '__keyevent@0__:zadd') {
       let hashKey = await zrevrange(key, 0, 0)
 
       setTimeout(async () => {

@@ -22,7 +22,7 @@ class Solar extends Component {
               <Header
                 title="Solar" 
                 color={ this.props.color } 
-               // value={ this.props.data.length > 1 ? parseFloat(this.props.data[this.props.data.length - 1].current).toFixed(0) : null } 
+                value={ this.props.data.length > 1 ? parseFloat(this.props.data[this.props.data.length - 1].current).toFixed(0) : null } 
                 unit="mA" />
                 
                 <Bar 
@@ -40,7 +40,7 @@ class Solar extends Component {
                 <Header
                   title="Solar" 
                   color={ this.props.color } 
-                 // value={ this.props.data.length > 1 ? parseFloat(this.props.data[this.props.data.length - 1].voltage).toFixed(2) : null } 
+                  value={ this.props.data.length > 1 ? parseFloat(this.props.data[this.props.data.length - 1].voltage).toFixed(2) : null } 
                   unit="V" />
                   
                   <Bar 
