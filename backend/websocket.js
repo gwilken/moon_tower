@@ -8,18 +8,14 @@ const zrevrange = promisify(getter.zrevrange).bind(getter)
 const hgetall = promisify(getter.hgetall).bind(getter)
 
 subscriber.on('ready', () => {
-//subscriber.subscribe("__keyevent@0__:*")
 subscriber.subscribe("__keyevent@0__:zadd")
 subscriber.subscribe("__keyevent@0__:expired")
-//subscriber.subscribe("__keyevent@0__:hset")
 subscriber.subscribe("__keyspace@0__:supervisor")
+subscriber.subscribe("__keyspace@0__:network")
 
-  subscriber.on("message", async (channel, key) => {
+subscriber.on("message", async (channel, key) => {
 
-//    console.log(channel, key)
-   
     if (channel === '__keyevent@0__:zadd') {
-   //   console.log('zadd', key)
       let hashKey = await zrevrange(key, 0, 0)
 
       setTimeout(async () => {
@@ -44,8 +40,15 @@ subscriber.subscribe("__keyspace@0__:supervisor")
       });
 
     } else if (channel === '__keyspace@0__:supervisor' && key == 'hset') {
-   //   console.log(channel, key)
         let hash = await hgetall('supervisor')
+
+        wss.clients.forEach(client => {
+            if (client.readyState === WebSocket.OPEN) {
+                client.send(JSON.stringify(hash));
+            }
+        });
+    } else if (channel === '__keyspace@0__:network' && key == 'hset') {
+        let hash = await hgetall('network')
 
         wss.clients.forEach(client => {
             if (client.readyState === WebSocket.OPEN) {
