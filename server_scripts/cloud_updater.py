@@ -37,8 +37,9 @@ time.sleep(5)
 
 # print modem.isConnected()
 modem.create_socket()
+time.sleep(3)
 
-modem.connect_socket('gwilken.com', '80')
+modem.connect_socket('http://www.gwilken.com', '80')
 
 time.sleep(5)
 
