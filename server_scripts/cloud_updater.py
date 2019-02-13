@@ -17,6 +17,10 @@ modem = MS2131(None, '9600', '/etc/ppp/chatscripts/ms2131')
 
 modem.connect()
 
+print modem.serial_port()
+print modem.localIPAddress()
+print modem.remoteIPAddress()
+
 #  result1 = mooncontrol.network.connect()
 
 # print "result1=", result1
@@ -39,7 +43,7 @@ time.sleep(5)
 modem.create_socket()
 time.sleep(3)
 
-modem.connect_socket('http://www.gwilken.com', '80')
+modem.connect_socket('gwilken.com', '80')
 
 time.sleep(5)
 
