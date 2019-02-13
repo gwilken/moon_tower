@@ -1,5 +1,5 @@
 from Hologram.CustomCloud import CustomCloud
-from Hologram import NetworkManager
+from Hologram.Network import NetworkManager
 from redisutils import *
 import requests
 import json
