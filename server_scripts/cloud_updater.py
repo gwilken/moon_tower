@@ -7,18 +7,18 @@ import time
 
 mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=4000, network='cellular')
 
-print “version and type=”, mooncontrol.version, mooncontrol.network_type
+print mooncontrol.version, mooncontrol.network_type
 
 result1 = mooncontrol.network.connect()
 
-print “result1=”,result1
+print "result1=", result1
 
-print 'first CONNECTION STATUS: ’ + str(mooncontrol.network.getConnectionStatus())
+print "first CONNECTION STATUS:" + str(mooncontrol.network.getConnectionStatus())
 
-resp = mooncontrol.sendMessage(“abc”)
+resp = mooncontrol.sendMessage("abc")
 
-print “resp=”,resp
-print 'second CONNECTION STATUS: ’ + str(mooncontrol.network.getConnectionStatus())
+print "resp=", resp
+print "second CONNECTION STATUS:" + str(mooncontrol.network.getConnectionStatus())
 
 
 
