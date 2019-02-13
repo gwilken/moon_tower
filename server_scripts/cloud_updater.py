@@ -36,6 +36,7 @@ modem.connect()
 time.sleep(5)
 
 # print modem.isConnected()
+modem.create_socket()
 
 modem.connect_socket('gwilken.com', '80')
 
