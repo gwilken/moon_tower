@@ -11,6 +11,7 @@ import socket
 #res = mooncontrol.network.modem.connect(None, 9600, '/etc/ppp/chatscripts/ms2131')
 
 #print mooncontrol.network.modem.mode
+lastgps = get_last_hash('gps-set')
 
 modem = MS2131(None, '9600', '/etc/ppp/chatscripts/ms2131')
 
@@ -21,10 +22,12 @@ modem.connect()
 print modem.localIPAddress
 print modem.remoteIPAddress
 
-host = socket.gethostbyname('www.gwilken.com')
-s = socket.create_connection((host, 4000), 2)
 
-s.send('{"msg": "Oi you sent something to me"}')
+
+#host = socket.gethostbyname('www.gwilken.com')
+#s = socket.create_connection((host, 4000), 2)
+
+#s.send('{"msg": "Oi you sent something to me"}')
 
 
 #  result1 = mooncontrol.network.connect()
@@ -55,11 +58,12 @@ s.send('{"msg": "Oi you sent something to me"}')
 
 #modem.send_message('{"key": "yolo"}')
 
-# lastgps = get_last_hash('gps-set')
+
 
 #res = mooncontrol.sendMessage("TEST TEST TEST", timeout = 10)
 
 #print(res)
 
+r = requests.post('http://gwilken.com:4000/api/key/', json = lastgps)
 
-#r = requests.post('http://gwilken.com:4000/api/key/', json = lastgps)
+print r
