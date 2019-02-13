@@ -7,7 +7,7 @@ import json
 import time
 
 
-mooncontrol = Hologram.CustomCloud(None, send_host='www.gwilken.com', send_port=4000, network='cellular')
+mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=4000, network='cellular')
 
 print mooncontrol.version, mooncontrol.network_type
 
