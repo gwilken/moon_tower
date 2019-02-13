@@ -33,14 +33,21 @@ modem.connect()
 #r = requests.get('https://api.github.com/events')  
 #clo  print(r.content)
 
+time.sleep(5)
 
+print modem.isConnected()
 
-lastgps = get_last_hash('gps-set')
+modem.connect_socket('www.gwilken.com/api/key', '4000')
 
-res = mooncontrol.sendMessage("TEST TEST TEST", timeout = 30)
+time.sleep(5)
 
-print(res)
+modem.send_message('{"key": "yolo"}')
 
-time.sleep(30)
+# lastgps = get_last_hash('gps-set')
+
+# res = mooncontrol.sendMessage("TEST TEST TEST", timeout = 30)
+
+# print(res)
+
 
 #r = requests.post('http://gwilken.com:4000/api/key/', json = lastgps)
