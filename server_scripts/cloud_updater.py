@@ -18,8 +18,8 @@ modem = MS2131(None, '9600', '/etc/ppp/chatscripts/ms2131')
 modem.connect()
 
 
-print modem.localIPAddress()
-print modem.remoteIPAddress()
+print modem.localIPAddress
+print modem.remoteIPAddress
 
 #  result1 = mooncontrol.network.connect()
 
@@ -37,7 +37,7 @@ print modem.remoteIPAddress()
 #r = requests.get('https://api.github.com/events')  
 #clo  print(r.content)
 
-time.sleep(5)
+#time.sleep(5)
 
 # print modem.isConnected()
 modem.create_socket()
