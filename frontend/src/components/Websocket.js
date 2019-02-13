@@ -12,7 +12,7 @@ const createWebSocket = () => {
 
             if (data.parent) {
                 if(data.parent === 'system') {
-                    console.log(data)
+                    //console.log(data)
 
                     store.dispatch (updateKey(data, data.type) )
                 } else {
