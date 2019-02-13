@@ -6,7 +6,7 @@ import json
 #r = requests.get('https://api.github.com/events')  
 #clo  print(r.content)
 
-mooncontrol = CustomCloud(dict(), send_host='gwilken.com', send_port=4000)
+mooncontrol = CustomCloud(None, send_host='gwilken.com', send_port=4000)
 
 lastgps = get_last_hash('gps-set')
 
