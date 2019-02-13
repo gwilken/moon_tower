@@ -7,7 +7,6 @@ import json
 import time
 
 
-#mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=4000, network='cellular')
 
 #res = mooncontrol.network.modem.connect(None, 9600, '/etc/ppp/chatscripts/ms2131')
 
@@ -17,6 +16,7 @@ modem = MS2131(None, '9600', '/etc/ppp/chatscripts/ms2131')
 
 modem.connect()
 
+mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=80, network='cellular')
 
 print modem.localIPAddress
 print modem.remoteIPAddress
@@ -40,20 +40,20 @@ print modem.remoteIPAddress
 #time.sleep(5)
 
 # print modem.isConnected()
-modem.create_socket()
-time.sleep(3)
+#modem.create_socket()
+#time.sleep(3)
 
-modem.connect_socket('gwilken.com', '80')
+#modem.connect_socket('gwilken.com', '80')
 
-time.sleep(5)
+#time.sleep(5)
 
-modem.send_message('{"key": "yolo"}')
+#modem.send_message('{"key": "yolo"}')
 
 # lastgps = get_last_hash('gps-set')
 
-# res = mooncontrol.sendMessage("TEST TEST TEST", timeout = 30)
+res = mooncontrol.sendMessage("TEST TEST TEST", timeout = 10)
 
-# print(res)
+print(res)
 
 
 #r = requests.post('http://gwilken.com:4000/api/key/', json = lastgps)
