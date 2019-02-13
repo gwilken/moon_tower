@@ -1,6 +1,6 @@
 # from Hologram.CustomCloud import CustomCloud
 # from Hologram.Network.Modem import MS2131
-import Hologram
+from Hologram import *
 from redisutils import *
 import requests
 import json
