@@ -10,7 +10,7 @@ mooncontrol = CustomCloud(dict(), send_host='gwilken.com', send_port=4000)
 
 lastgps = get_last_hash('gps-set')
 
-res = mooncontrol.sendMessage(json.dumps(lastgps), timeout = 10)
+res = mooncontrol.sendMessage("TEST TEST TEST", timeout = 10)
 
 print(res)
 
