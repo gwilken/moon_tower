@@ -21,7 +21,7 @@ modem.connect()
 print modem.localIPAddress
 print modem.remoteIPAddress
 
-host = socket.gethostbyname('www.gwilken.com/api/key')
+host = socket.gethostbyname('www.gwilken.com')
 s = socket.create_connection((host, 4000), 2)
 
 s.send('{"msg": "Oi you sent something to me"}')
