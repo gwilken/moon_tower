@@ -11,7 +11,7 @@ mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=4000, net
 
 #res = mooncontrol.network.modem.connect(None, 9600, '/etc/ppp/chatscripts/ms2131')
 
-print mooncontrol.network.modem.mode
+#print mooncontrol.network.modem.mode
 
 #modem = MS2131(None, 9600, '/etc/ppp/chatscripts/ms2131')
  
@@ -37,10 +37,10 @@ print mooncontrol.network.modem.mode
 
 lastgps = get_last_hash('gps-set')
 
-#res = mooncontrol.sendMessage("TEST TEST TEST", timeout = 30)
+res = mooncontrol.sendMessage("TEST TEST TEST", timeout = 30)
 
-# print(res)
+print(res)
 
-#time.sleep(30)
+time.sleep(30)
 
 #r = requests.post('http://gwilken.com:4000/api/key/', json = lastgps)
