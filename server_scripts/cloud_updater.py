@@ -2,6 +2,7 @@ from Hologram.CustomCloud import CustomCloud
 from redisutils import *
 import requests
 import json
+import time
 
 #r = requests.get('https://api.github.com/events')  
 #clo  print(r.content)
@@ -13,6 +14,6 @@ lastgps = get_last_hash('gps-set')
 res = mooncontrol.sendMessage("TEST TEST TEST", timeout = 30)
 print(res)
 
-sleep(30)
+time.sleep(30)
 
 #r = requests.post('http://gwilken.com:4000/api/key/', json = lastgps)
