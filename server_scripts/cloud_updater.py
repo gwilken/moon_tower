@@ -7,4 +7,4 @@ import requests
 
 lastgps = get_last_hash('gps-set')
 
-r = requests.post('http://localhost:4000/api/key/', json = lastgps)
+r = requests.post('http://gwilken.com:4000/api/key/', json = lastgps)
