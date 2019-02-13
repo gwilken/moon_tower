@@ -5,7 +5,7 @@ from redisutils import *
 import requests
 import json
 import time
-
+import socket
 
 
 #res = mooncontrol.network.modem.connect(None, 9600, '/etc/ppp/chatscripts/ms2131')
@@ -16,11 +16,15 @@ modem = MS2131(None, '9600', '/etc/ppp/chatscripts/ms2131')
 
 modem.connect()
 
-mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=80, network='cellular')
+#mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=80, network='cellular')
 
 print modem.localIPAddress
 print modem.remoteIPAddress
 
+host = socket.gethostbyname('www.gwilken.com')
+s = socket.create_connection((host, 80), 2)
+
+print s
 #  result1 = mooncontrol.network.connect()
 
 # print "result1=", result1
@@ -51,9 +55,9 @@ print modem.remoteIPAddress
 
 # lastgps = get_last_hash('gps-set')
 
-res = mooncontrol.sendMessage("TEST TEST TEST", timeout = 10)
+#res = mooncontrol.sendMessage("TEST TEST TEST", timeout = 10)
 
-print(res)
+#print(res)
 
 
 #r = requests.post('http://gwilken.com:4000/api/key/', json = lastgps)
