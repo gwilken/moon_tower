@@ -9,16 +9,20 @@ mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=4000, net
 
 print mooncontrol.version, mooncontrol.network_type
 
-result1 = mooncontrol.network.connect()
+modem = mooncontrol.ms2131(None, 9600, '/etc/ppp/chatscripts/ms2131')
+ 
+print modem
 
-print "result1=", result1
+#  result1 = mooncontrol.network.connect()
 
-print "first CONNECTION STATUS:" + str(mooncontrol.network.getConnectionStatus())
+# print "result1=", result1
 
-resp = mooncontrol.sendMessage("abc")
+# print "first CONNECTION STATUS:" + str(mooncontrol.network.getConnectionStatus())
 
-print "resp=", resp
-print "second CONNECTION STATUS:" + str(mooncontrol.network.getConnectionStatus())
+# resp = mooncontrol.sendMessage("abc")
+
+# print "resp=", resp
+# print "second CONNECTION STATUS:" + str(mooncontrol.network.getConnectionStatus())
 
 
 
