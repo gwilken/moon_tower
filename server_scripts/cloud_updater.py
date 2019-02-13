@@ -1,4 +1,5 @@
 from Hologram.CustomCloud import CustomCloud
+from Hologram import NetworkManager
 from redisutils import *
 import requests
 import json
@@ -8,8 +9,10 @@ import json
 
 mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=4000, network='cellular')
 
+nm = NetworkManager()
+
 print 'Available network interfaces:'
-print mooncontrol.listAvailableInterfaces() # ['cellular']
+print nm..listAvailableInterfaces()
 
 lastgps = get_last_hash('gps-set')
 
