@@ -9,7 +9,7 @@ mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=4000, net
 
 print mooncontrol.version, mooncontrol.network_type
 
-modem = mooncontrol.modem.ms2131(None, 9600, '/etc/ppp/chatscripts/ms2131')
+modem = mooncontrol.network.ms2131(None, 9600, '/etc/ppp/chatscripts/ms2131')
  
 print modem
 
