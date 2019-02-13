@@ -6,10 +6,10 @@ import json
 #r = requests.get('https://api.github.com/events')  
 #clo  print(r.content)
 
-print 'Available network interfaces:'
-print hologram.network.listAvailableInterfaces() # ['cellular']
-
 mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=4000, network='cellular')
+
+print 'Available network interfaces:'
+print mooncontrol.listAvailableInterfaces() # ['cellular']
 
 lastgps = get_last_hash('gps-set')
 
