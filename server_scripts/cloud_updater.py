@@ -9,6 +9,6 @@ mooncontrol = CustomCloud(dict(), send_host='gwilken.com', send_port=4000)
 
 lastgps = get_last_hash('gps-set')
 
-mooncontrol.sendMessage(lastgps, timeout = 10)
+mooncontrol.sendMessage(json.dumps(lastgps), timeout = 10)
 
 #r = requests.post('http://gwilken.com:4000/api/key/', json = lastgps)
