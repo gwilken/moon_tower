@@ -17,7 +17,7 @@ modem = MS2131(None, '9600', '/etc/ppp/chatscripts/ms2131')
 
 modem.connect()
 
-print modem.serial_port()
+
 print modem.localIPAddress()
 print modem.remoteIPAddress()
 
