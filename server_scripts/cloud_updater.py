@@ -1,5 +1,5 @@
 from Hologram.CustomCloud import CustomCloud
-from Hologram.Network.Modem import MS2131
+from Hologram.Network.Modem.MS2131 import MS2131
 #from Hologram import *
 from redisutils import *
 import requests
@@ -13,9 +13,9 @@ mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=4000, net
 
 #print mooncontrol.network.modem.mode
 
-MS2131(None, 9600, '/etc/ppp/chatscripts/ms2131')
+modem = MS2131(None, 9600, '/etc/ppp/chatscripts/ms2131')
  
-#print modem
+print modem
 
 #  result1 = mooncontrol.network.connect()
 
