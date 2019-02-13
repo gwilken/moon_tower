@@ -35,7 +35,7 @@ modem.connect()
 
 time.sleep(5)
 
-print modem.isConnected()
+# print modem.isConnected()
 
 modem.connect_socket('www.gwilken.com/api/key', '4000')
 
