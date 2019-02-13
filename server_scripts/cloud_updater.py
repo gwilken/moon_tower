@@ -7,14 +7,14 @@ import json
 import time
 
 
-mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=4000, network='cellular')
+#mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=4000, network='cellular')
 
 #res = mooncontrol.network.modem.connect(None, 9600, '/etc/ppp/chatscripts/ms2131')
 
 #print mooncontrol.network.modem.mode
 
 modem = MS2131('/dev/ttyUSB0', '9600', '/etc/ppp/chatscripts/ms2131')
- 
+
 modem.connect()
 
 #  result1 = mooncontrol.network.connect()
