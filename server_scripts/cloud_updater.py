@@ -9,9 +9,9 @@ import time
 
 mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=4000, network='cellular')
 
-res = mooncontrol.network.modem.connect(None, 9600, '/etc/ppp/chatscripts/ms2131')
+#res = mooncontrol.network.modem.connect(None, 9600, '/etc/ppp/chatscripts/ms2131')
 
-print res
+print mooncontrol.network.modem.mode
 
 #modem = MS2131(None, 9600, '/etc/ppp/chatscripts/ms2131')
  
