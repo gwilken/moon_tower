@@ -13,9 +13,9 @@ mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=4000, net
 
 #print mooncontrol.network.modem.mode
 
-modem = MS2131(None, 9600, '/etc/ppp/chatscripts/ms2131')
+modem = MS2131('/dev/ttyUSB0', 9600, '/etc/ppp/chatscripts/ms2131')
  
-print modem
+modem.connet()
 
 #  result1 = mooncontrol.network.connect()
 
