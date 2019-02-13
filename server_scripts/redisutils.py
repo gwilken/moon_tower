@@ -13,9 +13,21 @@ def connect_redis():
         return None
 
 
+def get_last_hash(setname):
+    hashkey = r.zrevrange(setname, 0, 0)
+    hashobj = r.hgetall(hashkey[0])
+    jsonobj = {}
+
+    for key in hashobj.keys():
+        jsonobj[key.decode('utf-8')] = hashobj[key].decode('utf-8')
+
+    jsonobj['hashkey'] = hashkey[0].decode('utf-8')
+    jsonobj['set'] = setname
+    return jsonobj
+
+
 #creates a hash map of values and adds key of that map to a sorted set of timestamps
 def add_hash_update_set(set, values, expire):
-    print values
     timestamp = int(time.time())
     values['timestamp'] = timestamp
     values['parent'] = set
