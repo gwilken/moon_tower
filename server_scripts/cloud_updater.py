@@ -21,10 +21,12 @@ modem.connect()
 print modem.localIPAddress
 print modem.remoteIPAddress
 
-host = socket.gethostbyname('www.gwilken.com')
-s = socket.create_connection((host, 80), 2)
+host = socket.gethostbyname('www.gwilken.com/api/key')
+s = socket.create_connection((host, 4000), 2)
 
-print s
+s.send('{"msg": "Oi you sent something to me"}')
+
+
 #  result1 = mooncontrol.network.connect()
 
 # print "result1=", result1
