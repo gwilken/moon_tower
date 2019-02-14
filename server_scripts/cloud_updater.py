@@ -1,69 +1,62 @@
-from Hologram.CustomCloud import CustomCloud
-from Hologram.Network.Modem.MS2131 import MS2131
-#from Hologram import *
+from Hologram.HologramCloud import HologramCloud
 from redisutils import *
-import requests
 import json
 import time
-import socket
+
+HOLOGRAM_REPSONSE_CODES = [
+  'ERR_OK',
+  'ERR_CONNCLOSED',
+  'ERR_MSGINVALID', 
+  'ERR_AUTHINVALID', 
+  'ERR_PAYLOADINVALID', 
+  'ERR_PROTINVALID', 
+  'ERR_INTERNAL', 
+  'ERR_UNKNOWN'
+]
+
+UPDATE_INTERVAL = 1800
+KEY_EXPIRE = 86400 * 30
+
+with open('moon_config.json', 'r') as f:
+    config = json.load(f)
 
 
-#res = mooncontrol.network.modem.connect(None, 9600, '/etc/ppp/chatscripts/ms2131')
+def send_data():
+  data = {
+    "gps": get_last_hash('gps-set'),
+    "solar": get_last_hash('solar-set'),
+    "house": get_last_hash('house-set'),
+    "supervisor": get_hash('supervisor')
+  }
 
-#print mooncontrol.network.modem.mode
-lastgps = get_last_hash('gps-set')
+  try:
+    credentials = {'devicekey': config['cellular']['device_key']}
+    hologram = HologramCloud(credentials, network='cellular', authentication_type='totp') 
+    hologram.network.modem = 'ms2131'
 
-modem = MS2131(None, '9600', '/etc/ppp/chatscripts/ms2131')
+    did_connect = hologram.network.connect()
+    
+    local_ip = hologram.network.modem.localIPAddress
+    remote_ip = hologram.network.modem.remoteIPAddress
 
-modem.connect()
+    res_code = hologram.sendMessage(json.dumps(data), topics=["MOONTOWER"])
 
-#mooncontrol = CustomCloud(None, send_host='www.gwilken.com', send_port=80, network='cellular')
+    hologram.network.disconnect()
 
-print modem.localIPAddress
-print modem.remoteIPAddress
+    return {
+      "ableToConnect": str(did_connect),
+      "messageResponseCode": HOLOGRAM_REPSONSE_CODES[res_code],
+      "localIp": str(local_ip),
+      "remoteIp": str(remote_ip),
+      "updateInterval": UPDATE_INTERVAL
+    }
 
+  except Exception as e:
+    print 'Error:', e
+    hologram.network.disconnect()
 
+    return {}
 
-#host = socket.gethostbyname('www.gwilken.com')
-#s = socket.create_connection((host, 4000), 2)
-
-#s.send('{"msg": "Oi you sent something to me"}')
-
-
-#  result1 = mooncontrol.network.connect()
-
-# print "result1=", result1
-
-# print "first CONNECTION STATUS:" + str(mooncontrol.network.getConnectionStatus())
-
-# resp = mooncontrol.sendMessage("abc")
-
-# print "resp=", resp
-# print "second CONNECTION STATUS:" + str(mooncontrol.network.getConnectionStatus())
-
-
-
-#r = requests.get('https://api.github.com/events')  
-#clo  print(r.content)
-
-#time.sleep(5)
-
-# print modem.isConnected()
-#modem.create_socket()
-#time.sleep(3)
-
-#modem.connect_socket('gwilken.com', '80')
-
-#time.sleep(5)
-
-#modem.send_message('{"key": "yolo"}')
-
-
-
-#res = mooncontrol.sendMessage("TEST TEST TEST", timeout = 10)
-
-#print(res)
-
-r = requests.post('http://gwilken.com:4000/api/key/', json = lastgps)
-
-print r
+while True:
+  set_hash('cloud', send_data(), KEY_EXPIRE)
+  time.sleep(UPDATE_INTERVAL)

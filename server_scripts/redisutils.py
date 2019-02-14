@@ -12,6 +12,8 @@ def connect_redis():
         print("Failed to connect to Redis.")
         return None
 
+def get_hash(hashname):
+    return r.hgetall(hashname)
 
 def get_last_hash(setname):
     hashkey = r.zrevrange(setname, 0, 0)

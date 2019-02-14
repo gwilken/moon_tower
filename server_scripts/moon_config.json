@@ -18,9 +18,7 @@
     "polling_freq": 5
   },
   "cellular": {
-    "listen_port": 4010,
-    "send_port": 9999,
-    "url": "cloudsocket.hologram.io",
-    "buffer_size": 1024
+    "device_key": "WC]A@>i&",
+    "update_interval": 1800
   }
 }
