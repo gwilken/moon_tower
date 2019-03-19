@@ -22,13 +22,13 @@ with open('moon_config.json', 'r') as f:
 
 
 def update_success():
-  timestamp = int(time.time())
+  timestamp = time.time()
   r.zadd('cloud-update-success-set', timestamp, timestamp)
 
 
 def send_data():
   last_success = r.zrevrange('cloud-update-success-set', 0, 0)
-  lastroute = build_polyline( float(last_success[0]), float(time.time()) )
+  lastroute = build_polyline( float(last_success[0]), time.time() )
 
   data = { 
     "device": "moontower",
