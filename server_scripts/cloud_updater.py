@@ -23,6 +23,10 @@ with open('moon_config.json', 'r') as f:
 
 def send_data():
   last_success = r.get('last-cloud-update-success')
+  
+  if last_success is None:
+    last_success = time.time()
+
   lastroute = build_polyline( last_success, time.time() )
 
   data = { 
