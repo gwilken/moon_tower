@@ -1,4 +1,4 @@
-from Hologram.HologramCloud import HologramCloud
+from Hologram import HologramCloud
 from redisutils import *
 import json
 import time
