@@ -22,8 +22,8 @@ with open('moon_config.json', 'r') as f:
 
 
 def update_success():
-  timestamp = time.time()
-  r.zadd('cloud-update-success-set', timestamp, timestamp)
+  timestamp = int(time.time())
+  r.zadd('cloud-update-success-set', 'timestamp', timestamp)
 
 
 def send_data():
