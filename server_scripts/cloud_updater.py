@@ -28,9 +28,9 @@ def update_success():
 
 def send_data():
   last_success = r.zrevrange('cloud-update-success-set', 0, 0)
-  # print(last_success)
-  # print(time.time())
   lastroute = build_polyline( float(last_success[0]), time.time() )
+  print('LASTROUTE', lastroute)
+  # print(last_success)
 
   data = { 
     "device": "moontower",
