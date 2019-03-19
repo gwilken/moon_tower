@@ -66,11 +66,10 @@ def send_data():
       "updateInterval": UPDATE_INTERVAL
     }
 
-  except Exception as e:
-    print('ERROR:', e)
-    hologram.network.disconnect()
+  # except Exception as e:
+  #   hologram.network.disconnect()
 
-    return {}
+  #   return {}
 
 while True:
   set_hash('cloud', send_data(), KEY_EXPIRE)
