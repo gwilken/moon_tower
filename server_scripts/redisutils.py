@@ -1,5 +1,6 @@
 import time
 import redis
+import polyline
 
 #connect to local redis
 def connect_redis():
@@ -12,8 +13,10 @@ def connect_redis():
         print("Failed to connect to Redis.")
         return None
 
+
 def get_hash(hashname):
     return r.hgetall(hashname)
+
 
 def get_last_hash(setname):
     hashkey = r.zrevrange(setname, 0, 0)
@@ -43,6 +46,7 @@ def add_hash_update_set(set, values, expire):
     except Exception as e:
         print('Error setting Redis keys:', e)
 
+
 #update system set and create hash
 def set_hash(hashname, values, expires):
     timestamp = int(time.time())
@@ -67,6 +71,19 @@ def clear_sorted_set(set):
 
     except Exception as e:
         print('Error deleting element of set:', e)
+
+
+def build_polyline(start, stop):
+  hashlist = r.zrangebyscore('gps-set', start, stop)
+  coords = []
+  for hash in hashlist:
+    lat = r.hget(hash, 'lat')
+    lon = r.hget(hash, 'lon')
+    coord = (float(lat), float(lon))
+    coords.append(coord)
+  
+  return polyline.encode(coords)
+
 
 
 r = connect_redis()
