@@ -29,8 +29,6 @@ def update_success():
 def send_data():
   last_success = r.zrevrange('cloud-update-success-set', 0, 0)
   lastroute = build_polyline( float(last_success[0]), time.time() )
-  print('LASTROUTE', lastroute)
-  # print(last_success)
 
   data = { 
     "device": "moontower",
@@ -67,7 +65,8 @@ def send_data():
     }
 
   except:
-    hologram.network.disconnect()
+   # hologram.network.disconnect()
+    print('Error...')
     return {}
 
 while True:
