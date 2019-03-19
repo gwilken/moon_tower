@@ -64,7 +64,7 @@ def send_data():
       "updateInterval": UPDATE_INTERVAL
     }
 
-  except e:
+  except Exception as e:
    # hologram.network.disconnect()
     print('Error:', e)
     return {}
