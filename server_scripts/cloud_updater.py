@@ -48,7 +48,7 @@ def send_data():
 
     if res_code == 0:
       timestamp = int(time.time())
-      r.zadd('cloud-update-success-set', {'timestamp': timestamp})
+      r.zadd('cloud-update-success-set', {timestamp: timestamp})
 
 
     hologram.network.disconnect()
