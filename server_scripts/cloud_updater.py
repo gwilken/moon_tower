@@ -22,8 +22,8 @@ with open('moon_config.json', 'r') as f:
 
 
 def send_data():
-  last_success = r.zrevrange('cloud-update-success-set', 0, 0)
-  lastroute = build_polyline( last_success[0], time.time() )
+  last_success = r.get('last-cloud-update-success')
+  lastroute = build_polyline( last_success, time.time() )
 
   data = { 
     "device": "moontower",
@@ -48,7 +48,7 @@ def send_data():
 
     if res_code == 0:
       timestamp = int(time.time())
-      r.zadd('cloud-update-success-set', {timestamp: 'timestamp'})
+      r.set('last-cloud-update-success', timestamp)
 
 
     hologram.network.disconnect()
