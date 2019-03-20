@@ -16,7 +16,9 @@ def connect_redis():
 
 def get_hash(hashname):
     obj = r.hgetall(hashname)
-    obj['redis-keys']['hashkey'] = hashname
+    obj['redis'] = {
+        'hashkey': hashname
+    }
     return obj
 
 
@@ -28,8 +30,11 @@ def get_last_hash(setname):
     for key in hashobj.keys():
         jsonobj[key.decode('utf-8')] = hashobj[key].decode('utf-8')
 
-    jsonobj['redis-keys']['hashkey'] = hashkey[0].decode('utf-8')
-    jsonobj['redis-keys']['set'] = setname
+    jsonobj['redis'] = {
+        'hashkey': hashkey[0].decode('utf-8'),
+        'set': setname
+    }
+
     return jsonobj
 
 
@@ -89,8 +94,9 @@ def build_polyline(start, stop):
             coords.append(coord)
   
     obj['polyline'] = polyline.encode(coords)
-    obj['redis-keys']['hashkey'] = 'last-polyline'
-    
+    obj['redis'] = {
+        'hashkey': 'last-polyline'
+    }
     return obj
 
 
