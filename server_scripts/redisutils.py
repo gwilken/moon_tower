@@ -89,7 +89,7 @@ def build_polyline(start, stop):
             coords.append(coord)
   
     obj['polyline'] = polyline.encode(coords)
-    obj['redis']['hashkey'] = 'last-polyline'
+    #obj['redis']['hashkey'] = 'last-polyline'
     
     return obj
 
