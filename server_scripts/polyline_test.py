@@ -9,7 +9,7 @@ with open('moon_config.json', 'r') as f:
 
 def build_polyline(start, stop):
   timestamp = int(time.time())
-
+ 
   test = r.zrevrange('gps-set', 0, 0)
   print(test)
 
@@ -18,6 +18,7 @@ def build_polyline(start, stop):
   for hash in hashlist:
     lat = r.hget(hash, 'lat')
     lon = r.hget(hash, 'lon')
+    print(lat, lon)
     coord = (float(lat), float(lon))
     coords.append(coord)
   
