@@ -79,8 +79,10 @@ def build_polyline(start, stop):
   for hash in hashlist:
     lat = r.hget(hash, 'lat')
     lon = r.hget(hash, 'lon')
-   # coord = (float(lat), float(lon))
-   # coords.append(coord)
+    print(lat, lon)
+
+    coord = (float(lat), float(lon))
+    coords.append(coord)
   
   return polyline.encode(coords)
 
