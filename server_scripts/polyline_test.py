@@ -22,6 +22,8 @@ def build_polyline(start, stop):
     coord = (float(lat), float(lon))
     coords.append(coord)
   
-  return polyline.encode(coords)
+  obj = polyline.encode(coords)
+  obj['redis']['hashkey'] = 'last-polyline'
+  return obj
 
 print(build_polyline( 1552260103, 1552260193 ))

@@ -18,7 +18,7 @@ UPDATE_INTERVAL = 1800
 KEY_EXPIRE = 86400 * 30
 
 with open('moon_config.json', 'r') as f:
-    config = json.load(f)
+  config = json.load(f)
 
 
 def send_data():
