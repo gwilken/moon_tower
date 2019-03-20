@@ -80,16 +80,10 @@ def build_polyline(start, stop):
     lat = r.hget(hash, 'lat')
     lon = r.hget(hash, 'lon')
     
-    if lat is None:
-        lat = 0
-    
-    if lon is None:
-        lon = 0
-
-    print(lat, lon)
-
-    coord = (float(lat), float(lon))
-    coords.append(coord)
+    if lat is not None and lon is not None:
+        coord = (float(lat), float(lon))
+        print(coord)
+        coords.append(coord)
   
   return polyline.encode(coords)
 
