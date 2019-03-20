@@ -30,12 +30,15 @@ def send_data():
   lastroute = build_polyline( last_success, time.time() )
 
   data = { 
-    "device": "moontower",
-    "last-route": lastroute,
-    "gps": get_last_hash('gps-set'),
-    "solar": get_last_hash('solar-set'),
-    "house": get_last_hash('house-set'),
-    "supervisor": get_hash('supervisor')
+    "deviceId": "moontower",
+    "key": "coldbeer",
+    "data": {
+      "last-route": lastroute,
+      "gps": get_last_hash('gps-set'),
+      "solar": get_last_hash('solar-set'),
+      "house": get_last_hash('house-set'),
+      "supervisor": get_hash('supervisor')
+    }
   }
 
   try:
