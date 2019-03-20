@@ -82,11 +82,9 @@ def build_polyline(start, stop):
     
     if lat is not None and lon is not None:
         coord = (float(lat), float(lon))
-        print(coord)
         coords.append(coord)
   
   return polyline.encode(coords)
-
 
 
 r = connect_redis()
