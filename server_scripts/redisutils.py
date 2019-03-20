@@ -73,12 +73,19 @@ def clear_sorted_set(set):
         print('Error deleting element of set:', e)
 
 
-def build_polyline(start = time.time(), stop = time.time()):
+def build_polyline(start, stop):
   hashlist = r.zrangebyscore('gps-set', start, stop)
   coords = []
   for hash in hashlist:
     lat = r.hget(hash, 'lat')
     lon = r.hget(hash, 'lon')
+    
+    if lat is None:
+        lat = 0
+    
+    if lon is None:
+        lon = 0
+
     print(lat, lon)
 
     coord = (float(lat), float(lon))
