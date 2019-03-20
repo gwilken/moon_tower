@@ -78,6 +78,7 @@ def clear_sorted_set(set):
 def build_polyline(start, stop):
   hashlist = r.zrangebyscore('gps-set', start, stop)
   coords = []
+  obj = {}
   for hash in hashlist:
     lat = r.hget(hash, 'lat')
     lon = r.hget(hash, 'lon')
@@ -86,7 +87,7 @@ def build_polyline(start, stop):
         coord = (float(lat), float(lon))
         coords.append(coord)
   
-    obj = polyline.encode(coords)
+    obj['polyline'] = polyline.encode(coords)
     obj['redis']['hashkey'] = 'last-polyline'
     return obj
 
