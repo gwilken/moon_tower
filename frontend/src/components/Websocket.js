@@ -2,7 +2,7 @@ import { pushData, updateKey } from '../js/actions.js'
 import store from '../js/store'
 
 const createWebSocket = () => {
-    let ws = new WebSocket('ws://192.168.2.3:8080')
+    let ws = new WebSocket('ws://192.168.2.3:4040')
 
     ws.onmessage = (event) => {
         try {

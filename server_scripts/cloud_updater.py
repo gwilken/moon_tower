@@ -33,7 +33,7 @@ def send_data():
     "deviceId": "moontower",
     "key": "coldbeer",
     "data": {
-      "last-route": lastroute,
+      "last-polyline": lastroute,
       "gps": get_last_hash('gps-set'),
       "solar": get_last_hash('solar-set'),
       "house": get_last_hash('house-set'),
