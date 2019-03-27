@@ -3,7 +3,7 @@ import Solar from './Solar'
 import { connect } from 'react-redux'
 import { addInitialData } from '../js/actions.js'
 import store from '../js/store'
-import axios from 'axios'
+import { getHashsFromSetByScore, getHashsFromSet } from '../js/api'
 
 const mapStateToProps = state => {
   return { 
@@ -26,8 +26,11 @@ constructor(props) {
 }
 
 componentWillMount() {
-    axios.get(`/api/window/solar-set/${this.state.window}`)
-        .then(res => this.receivedInitialData(res.data))
+  getHashsFromSet('solar-set', -30, -1)
+  .then(data => {
+    console.log('DATA:', data)
+   // this.receivedInitialData(data)
+  })
 }
 
 receivedInitialData = (data) => {

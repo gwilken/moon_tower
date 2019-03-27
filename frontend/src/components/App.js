@@ -13,10 +13,10 @@ const App = () => {
   return (
     <div>
       <Dashboard>
-        <SolarContainer />
-        <HouseContainer />
-        {/* <GPSContainer />
-        <SystemContainer /> */}
+        {/* <SolarContainer />
+        <HouseContainer /> */}
+        <GPSContainer />
+        {/* <SystemContainer /> */}
       </Dashboard>
     </div>
   );

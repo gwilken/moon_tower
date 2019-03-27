@@ -8,9 +8,9 @@ const Map = ReactMapboxGl({
 
 class GPS extends Component {
   constructor(props) {
-      super()
+    super()
 
-      this.state = {}
+    this.state = {}
   }
 
   returnLastCooridates = () => {
@@ -25,20 +25,20 @@ class GPS extends Component {
     return {
       "type": "geojson",
       "data": {
-          "type": "Feature",
-          "geometry": {
-              "type": "LineString",
-              "coordinates": this.props.data.map(elem => {
-                if (elem.lon !== 'n/a' && elem.lat !== 'n/a') {
-                  return [parseFloat(elem.lon), parseFloat(elem.lat)]
-                } else {
-                  return
-                }
-              })
-          },
-          "properties": {
-              "title": "Moontower Track"
-          }
+        "type": "Feature",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": this.props.data.map(elem => {
+            if (elem.lon !== 'n/a' && elem.lat !== 'n/a') {
+              return [parseFloat(elem.lon), parseFloat(elem.lat)]
+            } else {
+              return
+            }
+          })
+        },
+        "properties": {
+          "title": "Moontower Track"
+        }
       }
     }
   }
@@ -73,7 +73,7 @@ class GPS extends Component {
             // eslint-disable-next-line 
             style="mapbox://styles/gwilken/cjr5ki34136js2rt88hwjq6km"
             // zoom={ [14] }
-            center= { this.returnLastCooridates() }
+            center= { this.props.mostRecentData ? this.returnLastCooridates() : [-118.2437, 34.0522]}
             containerStyle={{
             height: "90%",
             width: "100%"
@@ -115,7 +115,7 @@ class GPS extends Component {
          )
 
       default:
-          break;
+        break;
     }
   }
 

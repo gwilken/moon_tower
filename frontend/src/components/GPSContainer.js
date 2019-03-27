@@ -3,33 +3,37 @@ import GPS from './GPS'
 import { connect } from 'react-redux'
 import { addInitialData } from '../js/actions.js'
 import store from '../js/store'
-import axios from 'axios'
+import { getHashsFromSetByScore, getHashsFromSet } from '../js/api'
 
 const mapStateToProps = state => {
   return { 
-      data: state.gps,
-      mostRecentData: state.gps[state.gps.length - 1]
+    data: state.gps,
+    mostRecentData: state.gps[state.gps.length - 1]
   }
 }
 
 class ReduxGPSContainer extends Component {
   constructor(props) {
-      super()
+    super()
 
-      this.state = {
-          currentView: 0,
-          color: 'cyan',
-      }
+    this.state = {
+      currentView: 0,
+      color: 'cyan',
+    }
   }
 
-  componentWillMount() {
-      axios.get(`/api/key/gps-set/`)
-          .then(res => this.receivedInitialData(res.data))
+  componentWillMount () {
+   // getHashsFromSetByScore('gps-set', 1552260143, 1552260193)
+    getHashsFromSet('gps-set', -30, -1)
+    .then(data => {
+      console.log('DATA:', data)
+      this.receivedInitialData(data)
+    })
   }
 
   receivedInitialData = (data) => {
-      // console.log('gps data:', data)
-      store.dispatch( addInitialData(data, 'gps') )
+    // console.log('gps data:', data)
+    store.dispatch( addInitialData(data, 'gps') )
   }
   
   handleClick = () => {

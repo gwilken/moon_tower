@@ -138,7 +138,6 @@ class ReduxLineChart extends React.Component {
       )
     }
   
-
   render () {
     let chart = this.chart(this.props.scores, this.props.timestamps)
     
@@ -148,7 +147,6 @@ class ReduxLineChart extends React.Component {
       </div>
     )
   }
-
 }
 
 const LineChart = connect(mapStateToProps)(ReduxLineChart)

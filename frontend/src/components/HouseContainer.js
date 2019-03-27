@@ -3,7 +3,7 @@ import House from './House'
 import { connect } from 'react-redux'
 import { addInitialData } from '../js/actions.js'
 import store from '../js/store'
-import axios from 'axios'
+import { getHashsFromSetByScore, getHashsFromSet } from '../js/api'
 
 
 const mapStateToProps = state => {
@@ -12,20 +12,24 @@ const mapStateToProps = state => {
 
 
 class ReduxHouseContainer extends Component {
-constructor(props) {
+  constructor(props) {
     super()
 
     this.state = {
-        currentView: 0,
-        window: 30,
-        color: 'cyan',
-        mostRecentData: null
+      currentView: 0,
+      window: 30,
+      color: 'cyan',
+      mostRecentData: null
     }
-}
+  }
 
 componentWillMount() {
-    axios.get(`/api/window/house-set/${this.state.window}`)
-        .then(res => this.receivedInitialData(res.data))
+  // getHashsFromSetByScore('gps-set', 1552260143, 1552260193)
+  getHashsFromSet('house-set', -30, -1)
+  .then(data => {
+    console.log('DATA:', data)
+    this.receivedInitialData(data)
+  })
 }
 
 receivedInitialData = (data) => {
@@ -47,15 +51,14 @@ handleChangeWindow = (val) => {
 }
 
 render () {
-    return ( 
-      <House
-        data={ this.props.data} 
-        currentView={ this.state.currentView } 
-        mostRecentData={ this.state.mostRecentData } 
-        color={ this.state.color }
-        window={ this.state.window }
-        onClick={ this.handleClick }
-      />
+  return ( 
+    <House
+      data={ this.props.data} 
+      currentView={ this.state.currentView } 
+      mostRecentData={ this.state.mostRecentData } 
+      color={ this.state.color }
+      window={ this.state.window }
+      onClick={ this.handleClick } />
     )
   }
 }
