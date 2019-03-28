@@ -12,7 +12,12 @@ def shutdown(channel):
     while GPIO.input(12) == GPIO.HIGH:
       elapsed = time.time() - start
       print('ELAPSED:', elapsed)
+      
+      if elapsed > 5:
+        subprocess.run(['echo', 'howdy!'])
+      
       time.sleep(1)
+
       #print('SHUTTING DOWN')
  
 try:
