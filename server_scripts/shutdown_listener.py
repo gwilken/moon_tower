@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import subprocess
 import time
 
-def shutdown(channel):
+def shutdown():
     start = time.time()
     elapsed = 0
     
