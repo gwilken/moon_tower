@@ -1,11 +1,8 @@
-# coding=utf-8
- 
 import RPi.GPIO as GPIO
 import subprocess
 import time
 
 def shutdown(channel):
-    #if GPIO.input(12) == GPIO.HIGH:
     start = time.time()
     elapsed = 0
     
@@ -17,8 +14,6 @@ def shutdown(channel):
         subprocess.run(['echo', 'howdy!'])
       
       time.sleep(1)
-
-      #print('SHUTTING DOWN')
  
 try:
     GPIO.setmode(GPIO.BCM)
