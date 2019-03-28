@@ -6,6 +6,8 @@ button = Button(12)
 def hello():
   print("Button pressed!")
 
-button.when_pressed = hello()
+#button.when_pressed = hello()
+
+print(button)
 
 pause()
