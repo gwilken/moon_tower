@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import subprocess
 import time
 
-def shutdown():
+def shutdown(this):
     start = time.time()
     elapsed = 0
     
