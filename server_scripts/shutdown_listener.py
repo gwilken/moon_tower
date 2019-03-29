@@ -11,7 +11,7 @@ def shutdown(pin):
       print('ELAPSED:', elapsed)
       
       if elapsed > 5:
-        subprocess.run(['sudo', 'shutdown now'])
+        subprocess.run(['sudo', 'shutdown', 'now'])
       
       time.sleep(1)
  
