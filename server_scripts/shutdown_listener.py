@@ -11,7 +11,7 @@ def shutdown():
       print('ELAPSED:', elapsed)
       
       if elapsed > 5:
-        subprocess.run(['echo', 'howdy!'])
+        subprocess.run(['echo', 'howdy! Shutting down...'])
       
       time.sleep(1)
  

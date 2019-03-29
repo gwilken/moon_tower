@@ -94,14 +94,13 @@ class House extends Component {
   }
 
   render () {
-      let currentView = this.returnCurrentView()
-    //  console.log( this.props.data )
-
-      return (
-        <div onClick={ this.props.onClick }>
-          { currentView }
-        </div>
-      )
+    let currentView = this.returnCurrentView()
+ 
+    return (
+      <div onClick={ this.props.onClick }>
+        { currentView }
+      </div>
+    )
   }
 }
 
