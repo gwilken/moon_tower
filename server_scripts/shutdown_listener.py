@@ -2,15 +2,15 @@ import RPi.GPIO as GPIO
 import subprocess
 import time
 
-def shutdown(pin):
+def shutdown(self):
     start = time.time()
     elapsed = 0
     
     while GPIO.input(12) == GPIO.LOW:
       elapsed = time.time() - start
-      print('ELAPSED:', elapsed)
-      
+
       if elapsed > 5:
+        print('Shutting down:', time.time())
         subprocess.run(['sudo', 'shutdown', 'now'])
       
       time.sleep(1)
