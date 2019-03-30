@@ -27,13 +27,16 @@ def send_data():
   if last_success is None:
     last_success = time.time()
 
-#  lastroute = build_polyline( last_success, time.time() )
+  lastroute = None;
+
+  try:
+    lastroute = build_polyline( last_success, time.time() )  
 
   data = { 
     "deviceId": "moontower",
     "key": "coldbeer",
     "data": {
- #     "last-polyline": lastroute,
+      "last-polyline": lastroute,
       "gps": get_last_hash('gps-set'),
       "solar": get_last_hash('solar-set'),
       "house": get_last_hash('house-set'),
