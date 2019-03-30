@@ -14,7 +14,7 @@ HOLOGRAM_REPSONSE_CODES = [
   'ERR_UNKNOWN'
 ]
 
-UPDATE_INTERVAL = 1800
+UPDATE_INTERVAL = 900
 KEY_EXPIRE = 86400 * 30
 
 with open('moon_config.json', 'r') as f:
@@ -48,10 +48,14 @@ def send_data():
 
     did_connect = hologram.network.connect()
     
+    print('Hologram connect status:', did_connect)
+
     local_ip = hologram.network.modem.localIPAddress
     remote_ip = hologram.network.modem.remoteIPAddress
 
     res_code = hologram.sendMessage(json.dumps(data), topics=["MOONTOWER"])
+
+    print('Hologram send message status:', HOLOGRAM_REPSONSE_CODES[res_code])
 
     if res_code == 0:
       timestamp = int(time.time())
@@ -74,5 +78,7 @@ def send_data():
     return {}
 
 while True:
-  set_hash('cloud', send_data(), KEY_EXPIRE)
+  data = send_data()
+  print('Cloud update status:', data)
+  set_hash('cloud', data, KEY_EXPIRE)
   time.sleep(UPDATE_INTERVAL)
