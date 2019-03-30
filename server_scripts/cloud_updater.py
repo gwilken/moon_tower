@@ -41,10 +41,11 @@ def send_data():
     }
   }
 
-  credentials = {'devicekey': config['cellular']['device_key']}
-  hologram = HologramCloud(credentials, network='cellular', authentication_type='totp') 
-  
+  hologram = None
+
   try:
+    credentials = {'devicekey': config['cellular']['device_key']}
+    hologram = HologramCloud(credentials, network='cellular', authentication_type='totp') 
     hologram.network.modem = 'ms2131'
 
     did_connect = hologram.network.connect()
