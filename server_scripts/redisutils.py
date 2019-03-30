@@ -44,10 +44,11 @@ def add_hash_update_set(set, values, expire):
     values['timestamp'] = timestamp
     values['parent'] = set
     hashkey = set + '-hash-' + str(timestamp)
-  
+
     try:
         r.zadd(set + '-set', hashkey, timestamp )
         r.hmset(hashkey, values)
+        r.set('last-' + set, values)
         r.expire(hashkey, expire)
 
     except Exception as e:
