@@ -73,9 +73,8 @@ def send_data():
     }
 
   except Exception as e:
-   # hologram.network.disconnect()
     print('Error:', e)
-    return {}
+    hologram.network.disconnect()
 
 while True:
   data = send_data()
