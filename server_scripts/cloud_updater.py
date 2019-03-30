@@ -69,7 +69,7 @@ def send_data():
 
     return {
       "ableToConnect": str(did_connect),
-      "timestamp": int(time.time())
+      "timestamp": int(time.time()),
       "messageResponseCode": HOLOGRAM_REPSONSE_CODES[res_code],
       "localIp": str(local_ip),
       "remoteIp": str(remote_ip),
