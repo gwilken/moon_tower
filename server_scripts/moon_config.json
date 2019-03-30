@@ -15,10 +15,10 @@
     "polling_freq": 10
   },
   "gps": {
-    "polling_freq": 60
+    "polling_freq": 300
   },
   "cellular": {
     "device_key": "WC]A@>i&",
-    "update_interval": 1800
+    "update_interval": 900
   }
 }

@@ -4,7 +4,8 @@ import store from '../js/store'
 console.log('WEBSOCKET LOADED')
 
 const createWebSocket = () => {
-  let ws = new WebSocket('ws://localhost:4040')
+  // let ws = new WebSocket('ws://localhost:4040')
+  let ws = new WebSocket('ws://192.168.2.3:4040')
 
   ws.onopen = () => {
     console.log('WS OPENED')
