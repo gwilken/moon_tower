@@ -64,6 +64,7 @@ def set_hash(hashname, values, expires):
 
     try:
         r.hmset(hashname, values)
+        r.set('last-' + hashname, values)
         r.expire(hashname, expires)
 
     except Exception as e:
