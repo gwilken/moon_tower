@@ -8,6 +8,7 @@ def shutdown(self):
     
     while GPIO.input(12) == GPIO.LOW:
       elapsed = time.time() - start
+      print('Shutdown pin low detected. Elapsed time:', elapsed)
 
       if elapsed > 5:
         print('Shutting down:', time.time())
